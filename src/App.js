@@ -4,19 +4,18 @@ import './App.css';
 import * as readableAPI from './readableAPI'
 
 class App extends Component {
-  state = {categories: [],
+  state = {categorys: [],
     tanzen: []
   }
 
 //to get all Categories.
 getCategories = () => {
-    readableAPI.get().then(categories => {this.setState({categories}), 
-    console.log("AusApp heraus: ", categories),
-    console.log("State:", this.state.categories)
+    readableAPI.get().then(categorys => {this.setState({categorys}), 
+    console.log("State Categorys:", this.state.categorys)
     })
   }
 
-// API Call to get all the Books initiall before the WebSite is rendered.
+// API Call to get all the Books initiall before the WebSite is rendered. 
   componentDidMount() {
     this.getCategories()
   }
@@ -28,9 +27,9 @@ getCategories = () => {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React Basser</h2>
         </div>
-        {(this.state.categories).map(category => (
-           <h1>{category.name}</h1>
-        ))}
+       {(this.state.categorys).map(category => (
+          <h1>{category.name}</h1>
+       ))}
       </div>
     );
   }
