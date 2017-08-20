@@ -22,8 +22,9 @@ getPosts = () => {
     })
   }
 
+//to get all Posts of a specific Category
 getCategoryPosts = (category) => {
-    readableAPI.getCategoryPosts().then(CategoryPosts => {this.setState({CategoryPosts}), 
+    readableAPI.getCategoryPosts(category).then(CategoryPosts => {this.setState({CategoryPosts}), 
     console.log("State CategoryPosts:", this.state.CategoryPosts)
     console.log("Category Input:", category)
     })
