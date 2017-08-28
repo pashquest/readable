@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import * as readableAPI from './readableAPI'
+import Categories from './components/Categories'
 
 class App extends Component {
+  
+/*
   state = {categories: [],
     posts: [],
     CategoryPosts: []
-  }
+  } 
 
 //to get all Categories.
 getCategories = () => {
@@ -36,22 +38,19 @@ getCategoryPosts = (category) => {
     this.getPosts(),
     this.getCategoryPosts("FrontEnd")
   }
+*/
 
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React Basser</h2>
-        </div>
-       {(this.state.categories).map(category => (
-          <h1>{category.name}</h1>
-       ))}
+      <div className = "Category">
+      <h1>Title: Categories</h1>  
+      <Categories />
+      </div>
 
-       {(this.state.posts).map(post => (
-          <h3>{post.id}</h3>
-       ))}
-
+      <div className = "Posts">
+      <h1>Title: Posts</h1>  
+      </div>
       </div>
     );
   }
