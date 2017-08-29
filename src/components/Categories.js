@@ -1,20 +1,16 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import { getCategories } from '../actions/categoryActions';
+import {getCategories} from '../actions/categoryActions';
 
 
 class Categories extends Component {
 render() {
         return (
-            <div>
-                {this.props.categories.map(category =>
-                    <h1>{category.name} </h1>
-                 )}
-
-            </div>
-            )
-        }
+           <div> 
+                {(this.props.categories.categories || []).map(category => <h4 key={category.name}>{category.name}</h4>) } 
+            </div>             
+        )}
 }
 
 // Get apps state and pass it as props to Categories
@@ -24,6 +20,7 @@ function mapStateToProps(state) {
         categories: state.categories
     };
 }
+
 
 
 // Get actions and pass them as props to to Categories

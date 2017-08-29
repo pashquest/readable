@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import * as readableAPI from './readableAPI'
+//import * as readableAPI from './readableAPI'
 import Categories from './components/Categories'
 import {connect} from 'react-redux';
-import {getCategories} from './actions/categoryActions';
+import * as actionCreators from './actions/categoryActions';
 import {bindActionCreators} from 'redux';
 
 class App extends Component {
@@ -34,7 +34,7 @@ getCategoryPosts = (category) => {
 
 // API Call to get all the Books initiall before the WebSite is rendered. 
   componentDidMount() {
-    this.props.getCategories()
+    this.props.getCategories();
   }
 
   render() {
@@ -54,7 +54,9 @@ getCategoryPosts = (category) => {
 }
 
 function matchDispatchToProps(dispatch){
-  return bindActionCreators({getCategories: getCategories}, dispatch);
+  return bindActionCreators(actionCreators, dispatch);
 }
 
-export default connect(matchDispatchToProps)(App); 
+// the connect accepts also a mapStateToProps first. With that i could avoid it.
+export default connect(state => state, matchDispatchToProps)(App);
+
