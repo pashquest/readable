@@ -1,10 +1,13 @@
-export const getCategories = (categories) => 
-{
-    console.log("ALL Categories in Action")
-    return {
-        type: 'GET_CATEGORIES',
-        payload: categories
-    }
-};
+import * as readableAPI from '../readableAPI'
 
+const receiveCategories = (categories) => ({
+    type: "RECEIVE_CATEGORIES",
+    categories
+});
+
+export const getCategories = () => (dispatch) => {
+    readableAPI.getCategories().then(
+    (categories) => dispatch(receiveCategories(categories))
+  );
+};
 

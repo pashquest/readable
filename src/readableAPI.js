@@ -21,6 +21,7 @@ export const getCategories = () =>
   fetch(`${api}/categories`, {headers})
     .then(res => res.json())
     .then(data => data.categories)
+ //   .then(druck => console.log(druck))
 
 // The posts API Response is different thats why i dont need to process data.
 export const getPosts = () =>

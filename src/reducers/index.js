@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-//import UserReducer from './reducer-users';
+import CategoryReducer from './categoryReducer';
 //import ActiveUserReducer from './reducer-active-user';
 
 /*
@@ -8,7 +8,7 @@ import {combineReducers} from 'redux';
  * */
 
 const allReducers = combineReducers({
-   // users: UserReducer,
+    categories: CategoryReducer
    // activeUser: ActiveUserReducer
 });
 

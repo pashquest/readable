@@ -2,21 +2,20 @@ import React, { Component } from 'react';
 import './App.css';
 import * as readableAPI from './readableAPI'
 import Categories from './components/Categories'
+import {connect} from 'react-redux';
+import {getCategories} from './actions/categoryActions';
+import {bindActionCreators} from 'redux';
 
 class App extends Component {
-  
-/*
-  state = {categories: [],
-    posts: [],
-    CategoryPosts: []
-  } 
 
 //to get all Categories.
+/*  
 getCategories = () => {
     readableAPI.getCategories ().then(categories => {this.setState({categories}), 
-    console.log("State Categorys:", this.state.categories)
+    console.log("State Categorys Action:")
     })
   }
+
 //to get all Posts.
 getPosts = () => {
     readableAPI.getPosts().then(posts => {this.setState({posts}), 
@@ -31,14 +30,12 @@ getCategoryPosts = (category) => {
     console.log("Category Input:", category)
     })
   }
+*/
 
 // API Call to get all the Books initiall before the WebSite is rendered. 
   componentDidMount() {
-    this.getCategories(),
-    this.getPosts(),
-    this.getCategoryPosts("FrontEnd")
+    this.props.getCategories()
   }
-*/
 
   render() {
     return (
@@ -56,4 +53,8 @@ getCategoryPosts = (category) => {
   }
 }
 
-export default App;
+function matchDispatchToProps(dispatch){
+  return bindActionCreators({getCategories: getCategories}, dispatch);
+}
+
+export default connect(matchDispatchToProps)(App); 
