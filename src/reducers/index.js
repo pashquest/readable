@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux';
 import CategoryReducer from './categoryReducer';
+import PostsReducer from './postsReducer';
 //import ActiveUserReducer from './reducer-active-user';
 
 /*
@@ -8,8 +9,8 @@ import CategoryReducer from './categoryReducer';
  * */
 
 const allReducers = combineReducers({
-    categories: CategoryReducer
-   // activeUser: ActiveUserReducer
+    categories: CategoryReducer,
+    posts: PostsReducer
 });
 
 export default allReducers

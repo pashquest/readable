@@ -1,4 +1,4 @@
-const categoryReducer = (state=[], action) => {
+const categoryReducer = (state={}, action) => {
   const { categories } = action; //using Destructuring
   switch(action.type) {
     case "RECEIVE_CATEGORIES":

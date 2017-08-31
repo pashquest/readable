@@ -21,15 +21,6 @@ function mapStateToProps(state) {
     };
 }
 
-
-
-// Get actions and pass them as props to to Categories
-//      > now Categories has this.props.selectUser
-function matchDispatchToProps(dispatch){
-    return bindActionCreators({getCategories: getCategories}, dispatch);
-}
-
-
 // We don't want to return the plain Categories (component) anymore, we want to return the smart Container
 //      > Categories is now aware of state and actions
-export default connect(mapStateToProps,matchDispatchToProps)(Categories); 
+export default connect(mapStateToProps)(Categories); 

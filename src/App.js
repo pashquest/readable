@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 //import * as readableAPI from './readableAPI'
 import Categories from './components/Categories'
+import Posts from './components/Posts'
 import {connect} from 'react-redux';
-import * as actionCreators from './actions/categoryActions';
+import * as categoriesActions from './actions/categoryActions';
+import * as postsActions from './actions/postsActions';
 import {bindActionCreators} from 'redux';
 
 class App extends Component {
@@ -35,6 +37,7 @@ getCategoryPosts = (category) => {
 // API Call to get all the Books initiall before the WebSite is rendered. 
   componentDidMount() {
     this.props.getCategories();
+    this.props.getPosts();
   }
 
   render() {
@@ -47,6 +50,7 @@ getCategoryPosts = (category) => {
 
       <div className = "Posts">
       <h1>Title: Posts</h1>  
+      <Posts />
       </div>
       </div>
     );
@@ -54,7 +58,8 @@ getCategoryPosts = (category) => {
 }
 
 function matchDispatchToProps(dispatch){
-  return bindActionCreators(actionCreators, dispatch);
+  // using ES7 object spread proposal (https://github.com/reactjs/redux/issues/363)
+   return bindActionCreators({...categoriesActions,...postsActions}, dispatch);
 }
 
 // the connect accepts also a mapStateToProps first. With that i could avoid it.
