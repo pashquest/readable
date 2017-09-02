@@ -1,5 +1,5 @@
 const postsReducer = (state={}, action) => {
-    const { posts, sortedBy } = action; //using Destructuring
+    const { posts } = action; //using Destructuring
     switch(action.type) {
       case "RECEIVE_POSTS":
         return {

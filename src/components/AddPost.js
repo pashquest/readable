@@ -4,11 +4,11 @@ import {connect} from 'react-redux';
 //import {getCategories} from '../actions/categoryActions';
 
 
-class Categories extends Component {
+class AddPost extends Component {
 render() {
         return (
            <div> 
-                {(this.props.categories.categories || []).map(category => <h4 key={category.name}>{category.name}</h4>) } 
+                HALLO du bist im AddPost
             </div>             
         )}
 }
@@ -23,4 +23,4 @@ function mapStateToProps(state) {
 
 // We don't want to return the plain Categories (component) anymore, we want to return the smart Container
 //      > Categories is now aware of state and actions
-export default connect(mapStateToProps)(Categories); 
+export default connect(mapStateToProps)(AddPost); 

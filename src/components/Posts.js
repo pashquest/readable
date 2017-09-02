@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {getPosts,changeSort} from '../actions/postsActions';
+import {changeSort} from '../actions/postsActions';
 import _orderBy from 'lodash.orderby' //used for sorting the posts
 import moment from 'moment' // used for the timestamp conversion
-
+import { Link } from 'react-router-dom'
 
 class Posts extends Component {
 
 render() {
     let sortedPosts = []   
     //Sorting the Posts and save it in sortedPosts Array
-    if(typeof (this.props.posts.posts) != 'undefined'){
+    if(typeof (this.props.posts.posts) !== 'undefined'){
         sortedPosts = _orderBy(this.props.posts.posts,[this.props.posts.sortedBy],["desc"]);
     }
         return (
@@ -31,8 +31,16 @@ render() {
                 )})
                 }
                 <div>
+                    <h3>Sort Posts</h3>
                     <button onClick={(e) => this.props.changeSort("voteScore")}>OrderByVote</button> 
                     <button onClick={(e) => this.props.changeSort("timestamp")}>OrderByTimestamp</button> 
+                    <button onClick={(e) => this.props.changeSort("author")}>OrderByAuthor</button> 
+                    <br></br>
+                    <h3>Add a new Post</h3>
+                    {/*used (<NavLink href="/addPost">New Post</NavLink>) which was working also well. 
+                    Denn am Anfang hat es nicht mit Link funktioniert, das lag daran weil ich das withRouter bei App.js
+                    nicht gemahct hatte. Muss wohl App.js sein, weil diese Component dem BrowserRouter mitgegeben wird*/}
+                    <Link to="/addPost">New Post</Link>              
                 </div>     
             </div>             
         )}
