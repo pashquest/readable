@@ -7,8 +7,14 @@ const receivePosts = (posts) => ({
 });
 
 export const getPosts = () => (callDispatch) => {
-    console.log("Action getPosts"),
     readableAPI.getPosts().then(posts => callDispatch(receivePosts(posts))
   );
 };
 
+export const changeSort = (sortedBy) => {
+    console.log("Action sortedBy", sortedBy)
+    return{
+    type: "CHANGE_SORT",
+    sortedBy: sortedBy
+    }
+}

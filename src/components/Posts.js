@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {getPosts} from '../actions/postsActions';
+import {getPosts,changeSort} from '../actions/postsActions';
 import _orderBy from 'lodash.orderby' //used for sorting the posts
 import moment from 'moment' // used for the timestamp conversion
 
@@ -9,12 +9,10 @@ import moment from 'moment' // used for the timestamp conversion
 class Posts extends Component {
 
 render() {
-
-    let sortedPosts = []
-    
-    //Sorting the Pots and save it in sortedPosts Array
+    let sortedPosts = []   
+    //Sorting the Posts and save it in sortedPosts Array
     if(typeof (this.props.posts.posts) != 'undefined'){
-        sortedPosts = _orderBy(this.props.posts.posts,["voteScore"],["desc"]);
+        sortedPosts = _orderBy(this.props.posts.posts,[this.props.posts.sortedBy],["desc"]);
     }
         return (
            <div> 
@@ -29,9 +27,13 @@ render() {
                     <h4><font color="red">Category:</font> {post.category}</h4>
                     <h4><font color="red">VoteScore</font> {post.voteScore}</h4>
                     <h4><font color="red">Deleted:</font>{post.deleted} </h4>
-                </ol>
-                )}) 
+                </ol> 
+                )})
                 }
+                <div>
+                    <button onClick={(e) => this.props.changeSort("voteScore")}>OrderByVote</button> 
+                    <button onClick={(e) => this.props.changeSort("timestamp")}>OrderByTimestamp</button> 
+                </div>     
             </div>             
         )}
 }
@@ -43,7 +45,10 @@ function mapStateToProps(state) {
         posts: state.posts
     };
 }
-
+function matchDispatchToProps(dispatch){
+    // using ES7 object spread proposal (https://github.com/reactjs/redux/issues/363)
+     return bindActionCreators({changeSort: changeSort}, dispatch);
+  }
 // We don't want to return the plain Categories (component) anymore, we want to return the smart Container
 //      > Categories is now aware of state and actions
-export default connect(mapStateToProps)(Posts); 
+export default connect(mapStateToProps,matchDispatchToProps)(Posts); 

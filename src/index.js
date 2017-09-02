@@ -10,8 +10,12 @@ import allReducers from './reducers';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger'
 
+//define initialState to ensure that the sortedBy is set, when the page is loading
+const initialState = { 
+    posts: {sortedBy:"voteScore"}
+  };
 
-const store = createStore(allReducers, applyMiddleware(thunk, logger));
+const store = createStore(allReducers, initialState, applyMiddleware(thunk, logger));
 
 ReactDOM.render(
     <Provider store={store}>
