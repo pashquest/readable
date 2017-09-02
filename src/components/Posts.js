@@ -5,6 +5,7 @@ import {changeSort} from '../actions/postsActions';
 import _orderBy from 'lodash.orderby' //used for sorting the posts
 import moment from 'moment' // used for the timestamp conversion
 import { Link } from 'react-router-dom'
+import { Button } from 'reactstrap'
 
 class Posts extends Component {
 
@@ -20,13 +21,13 @@ render() {
                 return(
                 <ol key = {post.id}>
                     <h4 key={post.id}><strong>id:</strong> {post.id} </h4>
-                    <h4> <font color="red">timestamp:</font> {moment(post.timestamp).format('lll')}</h4>
-                    <h4> <font color="red">Title:</font> {post.title}</h4>
-                    <h4><font color="red">body:</font> {post.body}</h4>
-                    <h4><font color="red">Author:</font> {post.author}</h4>
-                    <h4><font color="red">Category:</font> {post.category}</h4>
-                    <h4><font color="red">VoteScore</font> {post.voteScore}</h4>
-                    <h4><font color="red">Deleted:</font>{post.deleted} </h4>
+                    <p> <font color="red">timestamp:</font> {moment(post.timestamp).format('lll')}</p>
+                    <p><font color="red">Title:</font> {post.title}</p>
+                    <p><font color="red">body:</font> {post.body}</p>
+                    <p><font color="red">Author:</font> {post.author}</p>
+                    <p><font color="red">Category:</font> {post.category}</p>
+                    <p><font color="red">VoteScore</font> {post.voteScore}</p>
+                    <p><font color="red">Deleted:</font>{post.deleted} </p>
                 </ol> 
                 )})
                 }
@@ -40,7 +41,7 @@ render() {
                     {/*used (<NavLink href="/addPost">New Post</NavLink>) which was working also well. 
                     Denn am Anfang hat es nicht mit Link funktioniert, das lag daran weil ich das withRouter bei App.js
                     nicht gemahct hatte. Muss wohl App.js sein, weil diese Component dem BrowserRouter mitgegeben wird*/}
-                    <Link to="/addPost">New Post</Link>              
+                    <Button color="secondary"><Link to="/addPost">New Post</Link></Button>              
                 </div>     
             </div>             
         )}

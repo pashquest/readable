@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import CategoryReducer from './categoryReducer';
 import PostsReducer from './postsReducer';
+import { reducer as reduxFormReducer } from 'redux-form';
 //import ActiveUserReducer from './reducer-active-user';
 
 /*
@@ -10,7 +11,8 @@ import PostsReducer from './postsReducer';
 
 const allReducers = combineReducers({
     categories: CategoryReducer,
-    posts: PostsReducer
+    posts: PostsReducer,
+    form: reduxFormReducer
 });
 
 export default allReducers

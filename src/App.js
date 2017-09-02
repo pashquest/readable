@@ -3,12 +3,13 @@ import './App.css';
 //import * as readableAPI from './readableAPI'
 import Categories from './components/Categories'
 import Posts from './components/Posts'
-import AddPost from './components/AddPost'
+//import AddPost from './components/AddPost'
 import {connect} from 'react-redux';
 import * as categoriesActions from './actions/categoryActions';
 import * as postsActions from './actions/postsActions';
 import {bindActionCreators} from 'redux';
 import {Route, withRouter } from 'react-router-dom';
+import PostForm from './components/PostForm'
 
 class App extends Component {
 
@@ -55,7 +56,7 @@ getCategoryPosts = (category) => {
         </div> 
         )} />  
         {/*Wenn du ganz simple nur eine Component aufrufen willst, dann nimm das component Attribute*/}
-        <Route exact path="/addPost" component={AddPost}/> 
+        <Route exact path="/addPost" component={PostForm}/> 
       </div>
       )
   }
