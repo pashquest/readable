@@ -27,6 +27,7 @@ export const getCategories = () =>
 export const getPosts = () =>
   fetch(`${api}/posts`, {headers})
     .then(res => res.json())
+    //.then(druck => console.log("DRUCK:", druck))
 
 export const getCategoryPosts= (category) =>
   fetch(`${api}/${category}/posts`, {headers})

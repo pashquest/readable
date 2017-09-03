@@ -15,34 +15,10 @@ import uuidv1 from 'uuid'
 
 class App extends Component {
 
-//to get all Categories.
-
-addPostAsynch = (post) => {
-    const id = uuidv1()
-    const timestamp = Date.now()
-    post = {
-        id,
-        timestamp,
-        ...post
-    }
-   // readableAPI.addPost()
-   readableAPI.addPost(post)
-}
-/*
-//to get all Posts of a specific Category
-getCategoryPosts = (category) => {
-    readableAPI.getCategoryPosts(category).then(CategoryPosts => {this.setState({CategoryPosts}), 
-    console.log("State CategoryPosts:", this.state.CategoryPosts)
-    console.log("Category Input:", category)
-    })
-  }
-*/
-
 // API Call to get all the Books initiall before the WebSite is rendered. 
   componentDidMount() {
     this.props.getCategories();
     this.props.getPosts();
-    //this.addPostAsynch({title: "Hallo", body: "Alles Kack ehier", category: "react", })
   }
 
   render() {

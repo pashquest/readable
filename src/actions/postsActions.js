@@ -9,7 +9,9 @@ const receivePosts = (posts) => ({
 });
 
 export const getPosts = () => (callDispatch) => {
-    readableAPI.getPosts().then(posts => callDispatch(receivePosts(posts))
+    readableAPI.getPosts().then(posts => callDispatch(receivePosts(posts),
+    console.log("BASSER ALLE POSTS",posts))
+    
   );
 };
 //------------ChangeSort-------------------------
@@ -21,21 +23,23 @@ export const changeSort = (sortedBy) => {
 }
 
 //------------AddPost-------------------------
-const addPost = (post) => ({
-    type: "POST_ADD",
+const addPost = (post) => (
+console.log("ACTION BASSER addPOst",post),
+{
+    type: "ADD_POST",
     post
 });
 
 export const addPostAsynch = (post) => (callDispatch) => {
-    console.log("BASSER GOT CALLED")
     const id = uuidv1()
     const timestamp = Date.now()
-
+    
     post = {
         id,
         timestamp,
         ...post
     }
-    readableAPI.addPost().then(res=> callDispatch(addPost(post))   
+  //  console.log("BASSERPOST-DANACH",post)
+    readableAPI.addPost(post).then(res=> callDispatch(addPost(post))   
     )
 }
