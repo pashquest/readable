@@ -2,10 +2,10 @@
 
 import React, { Component } from 'react'
 import { Field, reduxForm, SubmissionError } from 'redux-form'
-//import { Input, Button } from 'semantic-ui-react';
 import {addPostAsynch} from '../actions/postsActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import * as readableAPI from '../readableAPI'
 
 class PostForm extends Component {
 
@@ -17,7 +17,7 @@ TitleInput({ input, meta: { touched, error }, ...custom }) {
           {...input}
           {...custom} />
     </div>
-    );
+    )
   }
   BodyInput({ input, meta: { touched, error }, ...custom }) {
     return (
@@ -27,7 +27,7 @@ TitleInput({ input, meta: { touched, error }, ...custom }) {
           {...input}
           {...custom} />
     </div>
-    );
+    )
   }
   CategoryInput({ input, meta: { touched, error }, ...custom }) {
     return (
@@ -37,11 +37,11 @@ TitleInput({ input, meta: { touched, error }, ...custom }) {
           {...input}
           {...custom} />
     </div>
-    );
+    )
   }
 
-  //values kommt automatisch von unseren Input name values da unten
-  submit(values, dispatch){
+//values kommt automatisch von unseren Input name values da unten
+  submit = (values, dispatch)=>{
     console.log("VALUES", values)
     this.props.addPostAsynch(values)
   }
@@ -72,11 +72,24 @@ TitleInput({ input, meta: { touched, error }, ...custom }) {
         <br/> 
         <button type="submit">Submit</button>
       </form>
-    );
+    )
   }
 }
 
 
+//"How do I mapStateToProps or mapDispatchToProps?" here: http://redux-form.com/6.7.0/docs/faq/HowToConnect.md/
+
+const mapStateToProps = (state) => {
+  return {
+    form: state.form
+  }
+}
+
+const mapDispatchToProps = (dispatch)  => {
+  return bindActionCreators({addPostAsynch: addPostAsynch}, dispatch);
+}
+
+/*
 function mapStateToProps(state) {
     return {
         form: state.form
@@ -84,11 +97,10 @@ function mapStateToProps(state) {
   }
   function matchDispatchToProps(dispatch){
      return bindActionCreators({addPostAsynch: addPostAsynch}, dispatch);
-  }
+  } */
   
-PostForm = connect(this.mapStateToProps, this.mapDispatchToProps)(PostForm);
-  
+PostForm = connect(mapStateToProps, mapDispatchToProps)(PostForm);
   
   export default reduxForm({
     form: 'PostForm' // a unique name for this form
-  })(PostForm); 
+  })(PostForm)
