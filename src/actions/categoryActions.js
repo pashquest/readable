@@ -7,7 +7,6 @@ const receiveCategories = (categories) => ({
 });
 
 export const getCategories = () => (callDispatch) => {
-    console.log("Action getCategories"),
     readableAPI.getCategories().then(categories => callDispatch(receiveCategories(categories))
   );
 };

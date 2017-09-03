@@ -1,24 +1,9 @@
-const postsReducer = (state={}, action) => {
-    const { posts, post } = action; //using Destructuring
-    console.log("BASSER POST",post)
-    console.log("BASSER ACTION",action)
-    console.log("BASSER STATE",state)
-    switch(action.type) {
+const postsReducer = (state=[], action) => {
+    switch(action.type) { 
       case "RECEIVE_POSTS":
-        return {
-          ...state,
-          posts
-        };
-      case "CHANGE_SORT":
-        return {
-          ...state,
-          sortedBy: action.sortedBy
-        }; 
-        case "ADD_POST":
-        return {
-          ...state,
-          post
-          }
+        return action.posts
+      case "ADD_POST":
+        return [...state, action.post]
         /*
         case SELECT_CATEGORY:
         return {

@@ -15,15 +15,10 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger'
 
 
-//define initialState to ensure that the sortedBy is set, when the page is loading
-const initialState = { 
-    posts: {sortedBy:"voteScore"}
-  };
-
 // To be able to use the Redux DevTools next to our Middleware
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const store = createStore(allReducers, initialState, composeEnhancers(applyMiddleware(thunk, logger)));
+const store = createStore(allReducers, composeEnhancers(applyMiddleware(thunk, logger)));
 
 ReactDOM.render(
     <Provider store={store}>

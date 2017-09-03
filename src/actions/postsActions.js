@@ -9,22 +9,21 @@ const receivePosts = (posts) => ({
 });
 
 export const getPosts = () => (callDispatch) => {
-    readableAPI.getPosts().then(posts => callDispatch(receivePosts(posts),
-    console.log("BASSER ALLE POSTS",posts))
-    
+    readableAPI.getPosts().then(posts => callDispatch(receivePosts(posts))    
   );
 };
 //------------ChangeSort-------------------------
 export const changeSort = (sortedBy) => {
+    console.log("SORTED_BYE",sortedBy)
     return{
     type: "CHANGE_SORT",
-    sortedBy: sortedBy
+    sortedBy
     }
 }
 
 //------------AddPost-------------------------
 const addPost = (post) => (
-console.log("ACTION BASSER addPOst",post),
+console.log("ACTION BASSER addPost",post),
 {
     type: "ADD_POST",
     post
@@ -39,7 +38,6 @@ export const addPostAsynch = (post) => (callDispatch) => {
         timestamp,
         ...post
     }
-  //  console.log("BASSERPOST-DANACH",post)
     readableAPI.addPost(post).then(res=> callDispatch(addPost(post))   
     )
 }

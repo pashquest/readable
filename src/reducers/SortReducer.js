@@ -1,7 +1,7 @@
-const categoryReducer = (state=[], action) => {
+const SortReducer = (state = "voteScore", action) => {
   switch(action.type) {
-    case "RECEIVE_CATEGORIES":
-      return action.categories
+    case "CHANGE_SORT":
+      return action.sortedBy
      /* 
     case SELECT_CATEGORY:
       return {
@@ -13,4 +13,4 @@ const categoryReducer = (state=[], action) => {
   }
 };
 
-export default categoryReducer;
+export default SortReducer;

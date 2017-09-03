@@ -12,15 +12,15 @@ class Posts extends Component {
 render() {
     let sortedPosts = []   
     //Sorting the Posts and save it in sortedPosts Array
-    if(typeof (this.props.posts.posts) !== 'undefined'){
-        sortedPosts = _orderBy(this.props.posts.posts,[this.props.posts.sortedBy],["desc"]);
+    if(typeof (this.props.posts) !== 'undefined'){
+        sortedPosts = _orderBy(this.props.posts,[this.props.sort],["desc"]);
     }
         return (
            <div> 
                 {(sortedPosts || []).map(post =>{             
                 return(
-                <ol key = {post.id}>
-                    <h4 key={post.id}><strong>id:</strong> {post.id} </h4>
+                <ol>
+                    <h4><strong>id:</strong> {post.id} </h4>
                     <p> <font color="red">timestamp:</font> {moment(post.timestamp).format('lll')}</p>
                     <p><font color="red">Title:</font> {post.title}</p>
                     <p><font color="red">body:</font> {post.body}</p>
@@ -40,7 +40,7 @@ render() {
                     <h3>Add a new Post</h3>
                     {/*used (<NavLink href="/addPost">New Post</NavLink>) which was working also well. 
                     Denn am Anfang hat es nicht mit Link funktioniert, das lag daran weil ich das withRouter bei App.js
-                    nicht gemahct hatte. Muss wohl App.js sein, weil diese Component dem BrowserRouter mitgegeben wird*/}
+                    nicht gemacht hatte. Muss wohl App.js sein, weil diese Component dem BrowserRouter mitgegeben wird*/}
                     <Button color="secondary"><Link to="/addPost">New Post</Link></Button>              
                 </div>     
             </div>             
@@ -51,7 +51,8 @@ render() {
 //      > whenever state changes, the Categories will automatically re-render
 function mapStateToProps(state) {
     return {
-        posts: state.posts
+        posts: state.posts,
+        sort: state.sort
     };
 }
 function matchDispatchToProps(dispatch){

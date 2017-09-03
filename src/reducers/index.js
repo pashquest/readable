@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import CategoryReducer from './categoryReducer';
 import PostsReducer from './postsReducer';
+import SortReducer from './SortReducer';
 import { reducer as reduxFormReducer } from 'redux-form';
 //import ActiveUserReducer from './reducer-active-user';
 
@@ -12,6 +13,7 @@ import { reducer as reduxFormReducer } from 'redux-form';
 const allReducers = combineReducers({
     categories: CategoryReducer,
     posts: PostsReducer,
+    sort: SortReducer,
     form: reduxFormReducer
 });
 

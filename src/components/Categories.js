@@ -6,9 +6,10 @@ import {connect} from 'react-redux';
 
 class Categories extends Component {
 render() {
+    console.log("categories",this.props.categories)
         return (
            <div> 
-                {(this.props.categories.categories || []).map(category => <h4 key={category.name}>{category.name}</h4>) } 
+                {(this.props.categories || []).map(category => <h4 key={category.name}>{category.name}</h4>) } 
             </div>             
         )}
 }

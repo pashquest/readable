@@ -15,7 +15,7 @@ import uuidv1 from 'uuid'
 
 class App extends Component {
 
-// API Call to get all the Books initiall before the WebSite is rendered. 
+// API Call to get all the Infos initial before the WebSite is rendered. 
   componentDidMount() {
     this.props.getCategories();
     this.props.getPosts();
@@ -29,8 +29,7 @@ class App extends Component {
         <div>
             <h1>Title: Categories</h1>  
                 <Categories />
-            <h1>Title: Posts</h1>  
-            <button onClick={(e) => this.addPostAsynch({title: "DirectInput", body: "Alles Kack ehier", category: "react", })} >Interface Call</button>
+            <h1>Title: Posts</h1>
             <Posts />
         </div> 
         )} />  
