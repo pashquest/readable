@@ -55,7 +55,6 @@ function mapStateToProps(state) {
     };
 }
 function matchDispatchToProps(dispatch){
-    // using ES7 object spread proposal (https://github.com/reactjs/redux/issues/363)
      return bindActionCreators({changeSort: changeSort}, dispatch);
   }
 // We don't want to return the plain Categories (component) anymore, we want to return the smart Container

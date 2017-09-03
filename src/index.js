@@ -7,9 +7,8 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 //-----ReactRouter------
 import { BrowserRouter } from 'react-router-dom';
-
 //--------------------------
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware,compose } from 'redux';
 import {Provider} from "react-redux";
 import allReducers from './reducers';
 import thunk from 'redux-thunk';
@@ -21,7 +20,10 @@ const initialState = {
     posts: {sortedBy:"voteScore"}
   };
 
-const store = createStore(allReducers, initialState, applyMiddleware(thunk, logger));
+// To be able to use the Redux DevTools next to our Middleware
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+const store = createStore(allReducers, initialState, composeEnhancers(applyMiddleware(thunk, logger)));
 
 ReactDOM.render(
     <Provider store={store}>

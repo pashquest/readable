@@ -1,97 +1,94 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { Values } from 'redux-form-website-template';
+// Mainly followed VideODescription https://www.youtube.com/watch?v=c2D-jjVAEf8
 
-const PostForm = props => {
-  const { handleSubmit, pristine, reset, submitting } = props;
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>First Name</label>
-        <div>
-          <Field
-            name="firstName"
-            component="input"
-            type="text"
-            placeholder="First Name"
-          />
-        </div>
-      </div>
-      <div>
-        <label>Last Name</label>
-        <div>
-          <Field
-            name="lastName"
-            component="input"
-            type="text"
-            placeholder="Last Name"
-          />
-        </div>
-      </div>
-      <div>
-        <label>Email</label>
-        <div>
-          <Field
-            name="email"
-            component="input"
-            type="email"
-            placeholder="Email"
-          />
-        </div>
-      </div>
-      <div>
-        <label>Sex</label>
-        <div>
-          <label>
-            <Field name="sex" component="input" type="radio" value="male" />
-            {' '}
-            Male
-          </label>
-          <label>
-            <Field name="sex" component="input" type="radio" value="female" />
-            {' '}
-            Female
-          </label>
-        </div>
-      </div>
-      <div>
-        <label>Favorite Color</label>
-        <div>
-          <Field name="favoriteColor" component="select">
-            <option />
-            <option value="ff0000">Red</option>
-            <option value="00ff00">Green</option>
-            <option value="0000ff">Blue</option>
-          </Field>
-        </div>
-      </div>
-      <div>
-        <label htmlFor="employed">Employed</label>
-        <div>
-          <Field
-            name="employed"
-            id="employed"
-            component="input"
-            type="checkbox"
-          />
-        </div>
-      </div>
-      <div>
-        <label>Notes</label>
-        <div>
-          <Field name="notes" component="textarea" />
-        </div>
-      </div>
-      <div>
-        <button type="submit" disabled={pristine || submitting}>Submit</button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
-        </button>
-      </div>
-    </form>
-  );
-};
+import React, { Component } from 'react'
+import { Field, reduxForm, SubmissionError } from 'redux-form'
+//import { Input, Button } from 'semantic-ui-react';
+import {addPostAsynch} from '../actions/postsActions';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
-export default reduxForm({
-  form: 'Post', // a unique identifier for this form
-})(PostForm);
+class PostForm extends Component {
+
+TitleInput({ input, meta: { touched, error }, ...custom }) {
+    return (
+      <div>
+        <input 
+          placeholder="Title..."
+          {...input}
+          {...custom} />
+    </div>
+    );
+  }
+  BodyInput({ input, meta: { touched, error }, ...custom }) {
+    return (
+      <div>
+        <input 
+          placeholder="Body..."
+          {...input}
+          {...custom} />
+    </div>
+    );
+  }
+  CategoryInput({ input, meta: { touched, error }, ...custom }) {
+    return (
+      <div>
+        <input 
+          placeholder="Category..."
+          {...input}
+          {...custom} />
+    </div>
+    );
+  }
+
+  //values kommt automatisch von unseren Input name values da unten
+  submit(values, dispatch){
+    console.log("VALUES", values)
+    this.props.addPostAsynch(values)
+  }
+
+  /*
+  submit({ location }, dispatch) {
+    return new Promise((resolve, reject) => {
+      dispatch({ 
+        type: 'FETCH_WEATHER',
+        location,
+        resolve,
+        reject 
+      });
+    }).catch((error) => {
+      throw new SubmissionError(error);
+    });
+  }
+  */
+
+
+  render() {
+    const { handleSubmit } = this.props;
+    return (
+      <form onSubmit={handleSubmit(this.submit)}>
+        <Field name="title" component={this.TitleInput} /> 
+        <Field name="body" component={this.BodyInput} /> 
+        <Field name="category" component={this.CategoryInput} /> 
+        <br/> 
+        <button type="submit">Submit</button>
+      </form>
+    );
+  }
+}
+
+
+function mapStateToProps(state) {
+    return {
+        form: state.form
+    };
+  }
+  function matchDispatchToProps(dispatch){
+     return bindActionCreators({addPostAsynch: addPostAsynch}, dispatch);
+  }
+  
+PostForm = connect(this.mapStateToProps, this.mapDispatchToProps)(PostForm);
+  
+  
+  export default reduxForm({
+    form: 'PostForm' // a unique name for this form
+  })(PostForm); 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-//import * as readableAPI from './readableAPI'
+import * as readableAPI from './readableAPI'
 import Categories from './components/Categories'
 import Posts from './components/Posts'
 //import AddPost from './components/AddPost'
@@ -10,24 +10,25 @@ import * as postsActions from './actions/postsActions';
 import {bindActionCreators} from 'redux';
 import {Route, withRouter } from 'react-router-dom';
 import PostForm from './components/PostForm'
+//import SimpleForm from './components/SimpleForm'
+import uuidv1 from 'uuid'
 
 class App extends Component {
 
 //to get all Categories.
-/*  
-getCategories = () => {
-    readableAPI.getCategories ().then(categories => {this.setState({categories}), 
-    console.log("State Categorys Action:")
-    })
-  }
 
-//to get all Posts.
-getPosts = () => {
-    readableAPI.getPosts().then(posts => {this.setState({posts}), 
-    console.log("State Posts:", this.state.posts)
-    })
-  }
-
+addPostAsynch = (post) => {
+    const id = uuidv1()
+    const timestamp = Date.now()
+    post = {
+        id,
+        timestamp,
+        ...post
+    }
+   // readableAPI.addPost()
+   readableAPI.addPost(post)
+}
+/*
 //to get all Posts of a specific Category
 getCategoryPosts = (category) => {
     readableAPI.getCategoryPosts(category).then(CategoryPosts => {this.setState({CategoryPosts}), 
@@ -41,6 +42,7 @@ getCategoryPosts = (category) => {
   componentDidMount() {
     this.props.getCategories();
     this.props.getPosts();
+    //this.addPostAsynch({title: "Hallo", body: "Alles Kack ehier", category: "react", })
   }
 
   render() {
@@ -52,12 +54,13 @@ getCategoryPosts = (category) => {
             <h1>Title: Categories</h1>  
                 <Categories />
             <h1>Title: Posts</h1>  
-                <Posts />
+            <button onClick={(e) => this.addPostAsynch({title: "DirectInput", body: "Alles Kack ehier", category: "react", })} >Interface Call</button>
+            <Posts />
         </div> 
         )} />  
         {/*Wenn du ganz simple nur eine Component aufrufen willst, dann nimm das component Attribute*/}
-        <Route exact path="/addPost" component={PostForm}/> 
-      </div>
+        <Route exact path="/addPost" component={PostForm}/>
+      </div> 
       )
   }
 }

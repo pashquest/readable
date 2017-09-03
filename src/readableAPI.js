@@ -1,8 +1,8 @@
 //Basics are cloned of the Udacity BooksAPI out of the MyRead Project.
 
 //API Url pointing to localhost or Heroku#
-//const api = "http://localhost:5001"; 
-const api = "https://evening-harbor-34965.herokuapp.com";
+const api = "http://localhost:5001"; 
+//const api = "https://evening-harbor-34965.herokuapp.com";
 //const api = "https://warm-escarpment-40953.herokuapp.com";
 
 // Generate a unique token for storing data on the backend server.
@@ -32,6 +32,23 @@ export const getCategoryPosts= (category) =>
   fetch(`${api}/${category}/posts`, {headers})
     .then(res => res.json())
    // .then(data => console.log("Data getCategoryPost", data))
+
+//Anderer Versuch
+export const addPost = (post) =>
+  fetch(`${api}/posts`, {
+      method: 'POST',
+      headers: {
+          ...headers
+      },
+      body: JSON.stringify({
+          "id": post.id,
+          "timestamp": post.timestamp,
+          "title": post.title,
+          "body": post.body,
+          "author": post.author,
+          "category": post.category
+      })
+}).then(res => res.json())
 
 /*
 export const getAll = () =>
