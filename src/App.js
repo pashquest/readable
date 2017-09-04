@@ -3,15 +3,13 @@ import './App.css';
 import * as readableAPI from './readableAPI'
 import Categories from './components/Categories'
 import Posts from './components/Posts'
-//import AddPost from './components/AddPost'
+import CategoryView from './components/CategoryView'
 import {connect} from 'react-redux';
 import * as categoriesActions from './actions/categoryActions';
 import * as postsActions from './actions/postsActions';
 import {bindActionCreators} from 'redux';
 import {Route, withRouter } from 'react-router-dom';
 import PostForm from './components/PostForm'
-//import SimpleForm from './components/SimpleForm'
-import uuidv1 from 'uuid'
 
 class App extends Component {
 
@@ -35,6 +33,7 @@ class App extends Component {
         )} />  
         {/*Wenn du ganz simple nur eine Component aufrufen willst, dann nimm das component Attribute*/}
         <Route exact path="/addPost" component={PostForm}/>
+        <Route exact path="/categoryView" component={CategoryView}/>
       </div> 
       )
   }

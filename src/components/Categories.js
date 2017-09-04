@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-//import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-//import {getCategories} from '../actions/categoryActions';
+import { Link } from 'react-router-dom'
 
 
 class Categories extends Component {
@@ -9,7 +8,9 @@ render() {
     console.log("categories",this.props.categories)
         return (
            <div> 
-                {(this.props.categories || []).map(category => <h4 key={category.name}>{category.name}</h4>) } 
+                {(this.props.categories || []).map(category => 
+                    <h4 key={category.name}><Link to="/categoryView"> {category.name}</Link> </h4>)} 
+                    
             </div>             
         )}
 }
