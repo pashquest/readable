@@ -45,6 +45,7 @@ function matchDispatchToProps(dispatch){
    return bindActionCreators({...categoriesActions,...postsActions}, dispatch);
 }
 
-// the connect accepts also a mapStateToProps first. With that i could avoid it.
+// the connect accepts  mapStateToProps first. With that i could avoid it. Maybe it would have also worked with null
+// like in the PostForm.js
 export default withRouter(connect(state => state, matchDispatchToProps)(App));
 

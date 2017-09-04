@@ -11,7 +11,7 @@ class Posts extends Component {
 
 render() {
     let sortedPosts = []   
-    //Sorting the Posts and save it in sortedPosts Array
+    //Sorting the Posts and save it in sortedPosts Array -  check if array is undefined to avoid an error.
     if(typeof (this.props.posts) !== 'undefined'){
         sortedPosts = _orderBy(this.props.posts,[this.props.sort],["desc"]);
     }
@@ -19,7 +19,7 @@ render() {
            <div> 
                 {(sortedPosts || []).map(post =>{             
                 return(
-                <ol>
+                <div>    
                     <h4><strong>id:</strong> {post.id} </h4>
                     <p> <font color="red">timestamp:</font> {moment(post.timestamp).format('lll')}</p>
                     <p><font color="red">Title:</font> {post.title}</p>
@@ -28,7 +28,7 @@ render() {
                     <p><font color="red">Category:</font> {post.category}</p>
                     <p><font color="red">VoteScore</font> {post.voteScore}</p>
                     <p><font color="red">Deleted:</font>{post.deleted} </p>
-                </ol> 
+                </div> 
                 )})
                 }
                 <div>

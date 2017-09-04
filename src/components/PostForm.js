@@ -1,105 +1,91 @@
-// Mainly followed VideODescription https://www.youtube.com/watch?v=c2D-jjVAEf8
-
+// Mainly followed Description of : http://redux-form.com/6.7.0/examples/simple/
 import React, { Component } from 'react'
-import { Field, reduxForm, SubmissionError } from 'redux-form'
+import { Field, reduxForm} from 'redux-form'
 import {addPostAsynch} from '../actions/postsActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as readableAPI from '../readableAPI'
+import { Link } from 'react-router-dom'
+
+{/*BEACHTE: handleSubmit und reset kommt von reduxForm und steht uns deshalb als prop zur Verfügung und die Input component 
+kommt auch von reduxform sowie die Field Component, aber man kann da wohl seine eigene Components nutzen called Custome Components.
+Mit ReduxForm kommt auch der Wert values, welche automatisch alle Values von den name Attributes in ein Objekt speichert*/}
 
 class PostForm extends Component {
 
-TitleInput({ input, meta: { touched, error }, ...custom }) {
-    return (
-      <div>
-        <input 
-          placeholder="Title..."
-          {...input}
-          {...custom} />
-    </div>
-    )
-  }
-  BodyInput({ input, meta: { touched, error }, ...custom }) {
-    return (
-      <div>
-        <input 
-          placeholder="Body..."
-          {...input}
-          {...custom} />
-    </div>
-    )
-  }
-  CategoryInput({ input, meta: { touched, error }, ...custom }) {
-    return (
-      <div>
-        <input 
-          placeholder="Category..."
-          {...input}
-          {...custom} />
-    </div>
-    )
-  }
-
-//values kommt automatisch von unseren Input name values da unten
-  submit = (values, dispatch)=>{
-    console.log("VALUES", values)
+  submit = (values)=>{
     this.props.addPostAsynch(values)
   }
 
-  /*
-  submit({ location }, dispatch) {
-    return new Promise((resolve, reject) => {
-      dispatch({ 
-        type: 'FETCH_WEATHER',
-        location,
-        resolve,
-        reject 
-      });
-    }).catch((error) => {
-      throw new SubmissionError(error);
-    });
-  }
-  */
+  render(){
+    const { handleSubmit, reset} = this.props;
 
-
-  render() {
-    const { handleSubmit } = this.props;
-    return (
+    return(
       <form onSubmit={handleSubmit(this.submit)}>
-        <Field name="title" component={this.TitleInput} /> 
-        <Field name="body" component={this.BodyInput} /> 
-        <Field name="category" component={this.CategoryInput} /> 
-        <br/> 
-        <button type="submit">Submit</button>
+        <div>
+          <label>Title</label>
+          <div>
+            <Field
+              name="title"
+              component="input"  
+              type="text"
+              placeholder="Title"
+            />
+          </div>
+        </div>
+        <div>
+          <label>Body</label>
+          <div>
+            <Field
+              name="body"
+              component="input"
+              type="text"
+              placeholder="Body"
+            />
+          </div>
+        </div>
+        <div>
+          <label>Author</label>
+          <div>
+            <Field
+              name="author"
+              component="input"
+              type="text"
+              placeholder="Author"
+            />
+          </div>
+        </div>
+        <div>
+          <label>Favorite Color</label>
+          <div>
+            <Field name="category" component="select">
+              <option />
+              <option value="FrontEnd">FrontEnd</option>
+              <option value="BackEnd">BackEnd</option>
+              <option value="BackEnd">Blockchain</option>
+            </Field>
+          </div>
+        </div>
+        <br></br>
+        <div>
+          <button type="submit" >Submit</button>
+          <button type="button" onClick={reset}> Clear Values</button>
+          <button><Link to="/">Back</Link></button>
+        </div>
       </form>
+
     )
   }
 }
 
 
 //"How do I mapStateToProps or mapDispatchToProps?" here: http://redux-form.com/6.7.0/docs/faq/HowToConnect.md/
-
-const mapStateToProps = (state) => {
-  return {
-    form: state.form
-  }
-}
-
+// Da ich state nicht benötige nehme ich es raus, aber muss in connect null einfügen, weil er satet als erstes erwartet oder ich mach sowas
+//  wie in App.js connect(state => state, matchDispatchToProps) - Aber das scehint wohl nur gehen weil dort mein mapDispatchToProps eine function ist
 const mapDispatchToProps = (dispatch)  => {
   return bindActionCreators({addPostAsynch: addPostAsynch}, dispatch);
 }
-
-/*
-function mapStateToProps(state) {
-    return {
-        form: state.form
-    };
-  }
-  function matchDispatchToProps(dispatch){
-     return bindActionCreators({addPostAsynch: addPostAsynch}, dispatch);
-  } */
   
-PostForm = connect(mapStateToProps, mapDispatchToProps)(PostForm);
+PostForm = connect(null, mapDispatchToProps)(PostForm);
   
   export default reduxForm({
     form: 'PostForm' // a unique name for this form
