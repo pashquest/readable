@@ -23,7 +23,6 @@ export const changeSort = (sortedBy) => {
 
 //------------AddPost-------------------------
 const addPost = (post) => (
-console.log("ACTION BASSER addPost",post),
 {
     type: "ADD_POST",
     post

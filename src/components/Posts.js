@@ -17,9 +17,9 @@ render() {
     if(typeof (this.props.posts) !== 'undefined'){
         sortedPosts = _orderBy(this.props.posts,[this.props.sort],["desc"]);
     }
-    if(this.props.selectedCategory !== 'undefined') {
-        filterSortedPosts = sortedPosts.filter(post => (post.category) === (this.props.selectedCategory))
-        console.log("ICH BIN HIER DRINNE", this.props.selectedCategory)
+    //selectedCategory is controlling the filter of the Posts - initialState is all.
+    if(this.props.selectedCategory !== "all") {
+        sortedPosts = sortedPosts.filter(post => (post.category) === (this.props.selectedCategory))
         }
 
         return (
@@ -35,6 +35,7 @@ render() {
                     <p><font color="red">Category:</font> {post.category}</p>
                     <p><font color="red">VoteScore</font> {post.voteScore}</p>
                     <p><font color="red">Deleted:</font>{post.deleted} </p>
+                    
                 </div> 
                 )})
                 }

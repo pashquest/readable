@@ -61,7 +61,7 @@ class PostForm extends Component {
               <option />
               <option value="FrontEnd">FrontEnd</option>
               <option value="BackEnd">BackEnd</option>
-              <option value="BackEnd">Blockchain</option>
+              <option value="Blockchain">Blockchain</option>
             </Field>
           </div>
         </div>

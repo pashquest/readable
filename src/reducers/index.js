@@ -16,7 +16,7 @@ const allReducers = combineReducers({
     posts: PostsReducer,
     sort: SortReducer,
     form: reduxFormReducer,
-    select: SelectedCategoryReducer
+    selectedCategory: SelectedCategoryReducer
 });
 
 export default allReducers
