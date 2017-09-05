@@ -10,11 +10,18 @@ import { Button } from 'reactstrap'
 class Posts extends Component {
 
 render() {
-    let sortedPosts = []   
+    let sortedPosts = []  
+    let filterSortedPosts = [] 
+
     //Sorting the Posts and save it in sortedPosts Array -  check if array is undefined to avoid an error.
     if(typeof (this.props.posts) !== 'undefined'){
         sortedPosts = _orderBy(this.props.posts,[this.props.sort],["desc"]);
     }
+    if(this.props.selectedCategory !== 'undefined') {
+        filterSortedPosts = sortedPosts.filter(post => (post.category) === (this.props.selectedCategory))
+        console.log("ICH BIN HIER DRINNE", this.props.selectedCategory)
+        }
+
         return (
            <div> 
                 {(sortedPosts || []).map(post =>{             
@@ -52,7 +59,8 @@ render() {
 function mapStateToProps(state) {
     return {
         posts: state.posts,
-        sort: state.sort
+        sort: state.sort,
+        selectedCategory: state.selectedCategory
     };
 }
 function matchDispatchToProps(dispatch){

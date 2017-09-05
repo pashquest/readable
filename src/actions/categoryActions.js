@@ -11,3 +11,12 @@ export const getCategories = () => (callDispatch) => {
   );
 };
 
+export const selectedCategory = (select) => {
+    console.log("ACTION_SELECTEDCATEGORY",select)
+    return{
+    type: "SELECTED_CATEGORY",
+    select
+    }
+};
+
+
