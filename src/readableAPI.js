@@ -51,6 +51,10 @@ export const addPost = (post) =>
       })
 }).then(res => res.json())
 
+export const getPostComments = (PostId) =>
+fetch(`${api}/posts/${PostId}/comments`, {headers})
+    .then(res => res.json())
+    .then(data => data)
 /*
 export const getAll = () =>
   fetch(`${api}/books`, { headers })

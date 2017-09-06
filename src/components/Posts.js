@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as PostActions from '../actions/postsActions';
-import {selectedPost} from '../actions/postsActions';
 import _orderBy from 'lodash.orderby' //used for sorting the posts
 import moment from 'moment' // used for the timestamp conversion
 import { Link } from 'react-router-dom'

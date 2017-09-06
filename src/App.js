@@ -3,7 +3,6 @@ import './App.css';
 import * as readableAPI from './readableAPI'
 import Categories from './components/Categories'
 import Posts from './components/Posts'
-import CategoryView from './components/CategoryView'
 import {connect} from 'react-redux';
 import * as categoriesActions from './actions/categoryActions';
 import * as postsActions from './actions/postsActions';
