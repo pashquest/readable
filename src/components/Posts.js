@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {changeSort} from '../actions/postsActions';
+import * as PostActions from '../actions/postsActions';
+import {selectedPost} from '../actions/postsActions';
 import _orderBy from 'lodash.orderby' //used for sorting the posts
 import moment from 'moment' // used for the timestamp conversion
 import { Link } from 'react-router-dom'
@@ -27,15 +28,12 @@ render() {
                 {(sortedPosts || []).map(post =>{             
                 return(
                 <div>    
-                    <h4><strong>id:</strong> {post.id} </h4>
-                    <p> <font color="red">timestamp:</font> {moment(post.timestamp).format('lll')}</p>
-                    <p><font color="red">Title:</font> {post.title}</p>
-                    <p><font color="red">body:</font> {post.body}</p>
-                    <p><font color="red">Author:</font> {post.author}</p>
                     <p><font color="red">Category:</font> {post.category}</p>
-                    <p><font color="red">VoteScore</font> {post.voteScore}</p>
-                    <p><font color="red">Deleted:</font>{post.deleted} </p>
-                    
+                    <p><font color="red">Title:</font><Link to="/postdetails" onClick={(e) => this.props.selectedPost(post)}>{post.title}</Link></p>
+                    <p><font color="red">Author:</font> {post.author}</p>
+                    <p><font color="red">timestamp:</font> {moment(post.timestamp).format('lll')}</p> 
+                    <p>--------------------------------------------------------------</p> 
+                    <br></br>    
                 </div> 
                 )})
                 }
@@ -65,7 +63,7 @@ function mapStateToProps(state) {
     };
 }
 function matchDispatchToProps(dispatch){
-     return bindActionCreators({changeSort: changeSort}, dispatch);
+  return bindActionCreators({ ...PostActions}, dispatch);
   }
 // We don't want to return the plain Categories (component) anymore, we want to return the smart Container
 //      > Categories is now aware of state and actions

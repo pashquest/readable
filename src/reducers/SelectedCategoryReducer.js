@@ -8,4 +8,4 @@ const {select} = action
   }
 };
 
-export default SelectedCategoryReducer
+export default SelectedCategoryReducer 

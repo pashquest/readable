@@ -3,6 +3,7 @@ import CategoryReducer from './categoryReducer';
 import PostsReducer from './postsReducer';
 import SortReducer from './SortReducer';
 import SelectedCategoryReducer from './SelectedCategoryReducer';
+import SelectedPostReducer from './SelectedPostReducer';
 import { reducer as reduxFormReducer } from 'redux-form';
 //import ActiveUserReducer from './reducer-active-user';
 
@@ -16,7 +17,8 @@ const allReducers = combineReducers({
     posts: PostsReducer,
     sort: SortReducer,
     form: reduxFormReducer,
-    selectedCategory: SelectedCategoryReducer
+    selectedCategory: SelectedCategoryReducer,
+    selectedPost: SelectedPostReducer
 });
 
 export default allReducers

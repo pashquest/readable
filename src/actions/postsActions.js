@@ -21,6 +21,14 @@ export const changeSort = (sortedBy) => {
     }
 }
 
+//------------SelectPost-------------------------
+export const selectedPost = (Post) => {
+    return {
+      type: "SELECTED_POST",
+      Post
+    }
+  }
+
 //------------AddPost-------------------------
 const addPost = (post) => (
 {
