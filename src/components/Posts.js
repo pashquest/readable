@@ -11,11 +11,10 @@ class Posts extends Component {
 
 render() {
     let sortedPosts = []  
-    let filterSortedPosts = [] 
 
     //Sorting the Posts and save it in sortedPosts Array -  check if array is undefined to avoid an error.
     if(typeof (this.props.posts) !== 'undefined'){
-        sortedPosts = _orderBy(this.props.posts,[this.props.sort],["desc"]);
+        sortedPosts = _orderBy(this.props.posts,[this.props.sort.postSort],["desc"]);
     }
     //selectedCategory is controlling the filter of the Posts - initialState is all.
     if(this.props.selectedCategory !== "all") {
@@ -38,9 +37,9 @@ render() {
                 }
                 <div>
                     <h3>Sort Posts</h3>
-                    <button onClick={(e) => this.props.changeSort("voteScore")}>OrderByVote</button> 
-                    <button onClick={(e) => this.props.changeSort("timestamp")}>OrderByTimestamp</button> 
-                    <button onClick={(e) => this.props.changeSort("author")}>OrderByAuthor</button> 
+                    <button onClick={(e) => this.props.changePostsSort("voteScore")}>OrderByVote</button> 
+                    <button onClick={(e) => this.props.changePostsSort("timestamp")}>OrderByTimestamp</button> 
+                    <button onClick={(e) => this.props.changePostsSort("author")}>OrderByAuthor</button> 
                     <br></br>
                     <h3>Add a new Post</h3>
                     {/*used (<NavLink href="/addPost">New Post</NavLink>) which was working also well. 

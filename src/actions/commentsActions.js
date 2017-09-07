@@ -13,6 +13,13 @@ export const getPostComments = (PostId) => (callDispatch) => {
   );
 };
 
+//------------ChangeCommentsSort-------------------------
+export const changeCommentsSort = (sortedBy) => {
+    return{
+    type: "COMMENTS_SORT",
+    sortedBy
+    }
+}
 
 /*
 // -------receivePost---------

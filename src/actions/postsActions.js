@@ -12,11 +12,10 @@ export const getPosts = () => (callDispatch) => {
     readableAPI.getPosts().then(posts => callDispatch(receivePosts(posts))    
   );
 };
-//------------ChangeSort-------------------------
-export const changeSort = (sortedBy) => {
-    console.log("SORTED_BYE",sortedBy)
+//------------ChangePostsSort-------------------------
+export const changePostsSort = (sortedBy) => {
     return{
-    type: "CHANGE_SORT",
+    type: "POSTS_SORT",
     sortedBy
     }
 }
