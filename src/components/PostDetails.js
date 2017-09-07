@@ -24,6 +24,9 @@ componentDidMount() {
               <p><font color="red">Author:</font> {this.props.selectedPost.author}</p>
               <p><font color="red">timestamp:</font> {moment(this.props.selectedPost.timestamp).format('lll')}</p>
               <br></br>
+              <button onClick={(e) => console.log("EDIT POST")}>Edit Post</button> 
+               <button onClick={(e) => console.log("Delete POST")}>Delete Post</button> 
+              <br></br>
               <Comments />
             </div>
           )

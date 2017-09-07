@@ -55,6 +55,18 @@ export const getPostComments = (PostId) =>
 fetch(`${api}/posts/${PostId}/comments`, {headers})
     .then(res => res.json())
     .then(data => data)
+
+//-----------DELETE POSTS---------
+export const deletePost = (PostId) =>
+fetch(`${api}/posts/${PostId}`, {
+        method: 'DELETE',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        }
+})
+
+
 /*
 export const getAll = () =>
   fetch(`${api}/books`, { headers })

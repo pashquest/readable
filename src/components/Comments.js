@@ -7,6 +7,7 @@ import * as CommentsActions from "../actions/commentsActions"
 import _orderBy from 'lodash.orderby' //used for sorting the Comments
 
 
+
 class Comments extends Component {
 
 render() {
@@ -35,6 +36,7 @@ if(typeof (this.props.postComments) !== 'undefined'){
                 }
                 <button onClick={(e) => this.props.changeCommentsSort("voteScore")}>OrderByVoteScore</button> 
                 <button onClick={(e) => this.props.changeCommentsSort("timestamp")}>OrderByTimeStamp</button> 
+                <button><Link to="/">Back</Link></button>
             </div>             
         )}
 }

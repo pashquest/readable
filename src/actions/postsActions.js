@@ -47,3 +47,23 @@ export const addPostAsynch = (post) => (callDispatch) => {
     readableAPI.addPost(post).then(res=> callDispatch(addPost(post))   
     )
 }
+
+//------------DELETE POST-------------------------
+const deletePost = (post) => (
+    {
+        type: "DELETE_POST",
+        post
+    });
+    
+    export const deletePost = (post) => (callDispatch) => {
+        const id = uuidv1()
+        const timestamp = Date.now()
+        
+        post = {
+            id,
+            timestamp,
+            ...post
+        }
+        readableAPI.deletePost(post).then(res=> callDispatch(deletePost(post))   
+        )
+    }
