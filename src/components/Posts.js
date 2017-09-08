@@ -30,6 +30,7 @@ render() {
                     <p><font color="red">Title:</font><Link to="/postdetails" onClick={(e) => this.props.selectedPost(post)}>{post.title}</Link></p>
                     <p><font color="red">Author:</font> {post.author}</p>
                     <p><font color="red">timestamp:</font> {moment(post.timestamp).format('lll')}</p> 
+                    <p><font color="red">Deleted:</font> {String(post.deleted)}</p>
                     <p>--------------------------------------------------------------</p> 
                     <br></br>    
                 </div> 

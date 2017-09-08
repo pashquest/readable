@@ -49,21 +49,16 @@ export const addPostAsynch = (post) => (callDispatch) => {
 }
 
 //------------DELETE POST-------------------------
-const deletePost = (post) => (
+const deletePost = (postId) => (
+    console.log("ACTION DELETE POST"),
     {
         type: "DELETE_POST",
-        post
+        postId
     });
     
-    export const deletePost = (post) => (callDispatch) => {
-        const id = uuidv1()
-        const timestamp = Date.now()
-        
-        post = {
-            id,
-            timestamp,
-            ...post
-        }
-        readableAPI.deletePost(post).then(res=> callDispatch(deletePost(post))   
+    export const deletePostAsynch = (postId) => (callDispatch) => {      
+        readableAPI.deletePost(postId).then(res=> callDispatch(deletePost(postId))   
         )
     }
+
+    //callDispatch(deletePost(post)

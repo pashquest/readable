@@ -4,12 +4,8 @@ const postsReducer = (state=[], action) => {
         return action.posts
       case "ADD_POST":
         return [...state, action.post]
-        /*
-        case SELECT_CATEGORY:
-        return {
-          ...state,
-          selectedCategory
-        }; */
+      case "DELETE_POST":
+        return [...state]
       default:
         return state;
     }

@@ -29,6 +29,8 @@ if(typeof (this.props.postComments) !== 'undefined'){
                     <p><font color="red">Author:</font> {postComment.author}</p>
                     <p><font color="red">timestamp:</font> {moment(postComment.timestamp).format('lll')}</p> 
                     <p><font color="red">voteScore:</font> {postComment.voteScore}</p>
+                    <p><font color="red">Deleted:</font> {String(postComment.deleted)}</p>
+                    <p><font color="red">Parent Deleted:</font> {String(postComment.parentDeleted)}</p>
                     <p>--------------------------------------------------------------</p> 
                     <br></br>    
                 </div> 
