@@ -1,7 +1,7 @@
 // Mainly followed Description of : http://redux-form.com/6.7.0/examples/simple/
 import React, { Component } from 'react'
 import { Field, reduxForm} from 'redux-form'
-import {addPostAsynch} from '../actions/postsActions';
+import {addPostAsynch, updatePostAsynch,getPosts} from '../actions/postsActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom'
@@ -14,6 +14,13 @@ class PostForm extends Component {
 
   submit = (values)=>{
     this.props.addPostAsynch(values)
+    this.props.history.push("/");
+  }
+  //Rufe diese Methode auch mit handleSubmit auf, denn nur dann habe ich scheinbar in values alle FormInputs.
+  update = (values)=>{
+    this.props.updatePostAsynch(values)
+    this.props.getPosts()  //Call the posts again to have the latest Infos about the posts
+    this.props.history.push("/");
   }
 
   render(){
@@ -21,6 +28,8 @@ class PostForm extends Component {
 
     return(
       <form onSubmit={handleSubmit(this.submit)}>
+        <h1> POST Formular </h1>
+        <br></br>
         <div>
           <label>Title</label>
           <div>
@@ -55,7 +64,7 @@ class PostForm extends Component {
           </div>
         </div>
         <div>
-          <label>Favorite Color</label>
+          <label>Category</label>
           <div>
             <Field name="category" component="select">
               <option />
@@ -67,9 +76,9 @@ class PostForm extends Component {
         </div>
         <br></br>
         <div>
-          <button type="submit" >Submit</button>
-          <button type="button" onClick={reset}> Clear Values</button>
-          <button><Link to="/">Back</Link></button>
+          <button type="submit" >Add Post</button>
+          <button><Link to="/">Home</Link></button>
+          <button type="button" onClick={handleSubmit(this.update)}> Update Post</button>
         </div>
       </form>
 
@@ -81,12 +90,38 @@ class PostForm extends Component {
 //"How do I mapStateToProps or mapDispatchToProps?" here: http://redux-form.com/6.7.0/docs/faq/HowToConnect.md/
 // Da ich state nicht benötige nehme ich es raus, aber muss in connect null einfügen, weil er satet als erstes erwartet oder ich mach sowas
 //  wie in App.js connect(state => state, matchDispatchToProps) - Aber das scehint wohl nur gehen weil dort mein mapDispatchToProps eine function ist
+// Update: Weil diese nicht so ganz mit den initialValues funktionierte, musste ich das umgestalten. So wie das hier beschrieben ist:
+// http://redux-form.com/6.0.0-alpha.4/examples/initializeFromState/  Habe die addPostAsynch() noch hinzugefügt. FortheSake um Fertig zu werden.
+
+PostForm = reduxForm({
+  form: 'PostForm'
+})(PostForm)
+
+
+PostForm = connect(
+  state => ({
+    initialValues: state.selectedPost
+  }),
+  {addPostAsynch: addPostAsynch, updatePostAsynch: updatePostAsynch, getPosts: getPosts }
+)(PostForm)
+
+export default PostForm
+
+
+/*
 const mapDispatchToProps = (dispatch)  => {
-  return bindActionCreators({addPostAsynch: addPostAsynch}, dispatch);
+  return bindActionCreators({addPostAsynch: addPostAsynch, load: selectedPost}, dispatch);
+}
+
+const mapStateToProps = (state) => {
+  return {
+    initialValues: state.selectedPost
+  };
 }
   
-PostForm = connect(null, mapDispatchToProps)(PostForm);
+PostForm = connect(mapStateToProps, mapDispatchToProps)(PostForm);
   
   export default reduxForm({
     form: 'PostForm' // a unique name for this form
   })(PostForm)
+  */

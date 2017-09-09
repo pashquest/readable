@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import moment from 'moment' 
 import * as CommentActions from '../actions/commentsActions'
-import {deletePostAsynch, getPosts} from '../actions/postsActions'
+import {deletePostAsynch, getPosts, removeSelectedPost} from '../actions/postsActions'
 import { bindActionCreators } from 'redux'
 import Comments from './Comments'
 
@@ -17,12 +17,14 @@ componentDidMount() {
   }
 
 // Call the API so the freshState of alle the Posts gets loaded into the state.
+// And CleanUp teh selected Posts in the State as no Post is selected anymore.
 componentWillUnmount() {
    this.props.getPosts()
+   this.props.removeSelectedPost()
   }
 
 render() {
-//METHPD TO CALL
+
 const deletePostAndPush = () => {
       this.props.deletePostAsynch(this.props.selectedPost.id)
       this.props.history.push("/");
@@ -38,7 +40,7 @@ const deletePostAndPush = () => {
               <p><font color="red">Deleted:</font> {String(this.props.selectedPost.deleted)}</p>
               <br></br>
               <button onClick={(e) => deletePostAndPush()}>DELETE Post</button>
-              <button onClick={(e) => console.log("Edit POST")}>Edit Post</button> 
+              <button onClick={(e) => this.props.history.push("/addPost")}>Edit Post</button> 
               <br></br>
               <Comments />
             </div>
@@ -53,7 +55,7 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch){
-    return bindActionCreators({ deletePostAsynch: deletePostAsynch,...CommentActions, getPosts: getPosts }, dispatch);
+    return bindActionCreators({ deletePostAsynch: deletePostAsynch,...CommentActions, getPosts: getPosts, removeSelectedPost: removeSelectedPost}, dispatch);
     }
 
 export default connect(mapStateToProps,matchDispatchToProps)(PostDetails); 

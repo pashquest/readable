@@ -34,7 +34,7 @@ export const getCategoryPosts= (category) =>
     .then(res => res.json())
    // .then(data => console.log("Data getCategoryPost", data))
 
-//Anderer Versuch
+//Anderer Versuch um ein Post zu adden
 export const addPost = (post) =>
   fetch(`${api}/posts`, {
       method: 'POST',
@@ -47,9 +47,29 @@ export const addPost = (post) =>
           "title": post.title,
           "body": post.body,
           "author": post.author,
-          "category": post.category
+          "category": post.category,
+          "deleted": post.deleted
       })
 }).then(res => res.json())
+
+//---- UPDATE POST
+export const updatePost = (post) =>
+fetch(`${api}/posts/${post.id}`, {
+    method: 'PUT',
+    headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        "id": post.id,
+        "timestamp": post.timestamp,
+        "title": post.title,
+        "body": post.body,
+        "author": post.author,
+        "category": post.category,
+        "deleted": post.deleted
+    })
+}).then(res => res.json()).then(druck => console.log("BASSER UPDATE POST", druck))
 
 export const getPostComments = (PostId) =>
 fetch(`${api}/posts/${PostId}/comments`, {headers})

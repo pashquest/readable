@@ -28,6 +28,13 @@ export const selectedPost = (Post) => {
     }
   }
 
+//------------RemoveSelectPost for StateCleanUp----------------------
+export const removeSelectedPost = () => {
+    return {
+      type: "REMOVE_SELECTED_POST"
+    }
+  }
+
 //------------AddPost-------------------------
 const addPost = (post) => (
 {
@@ -47,10 +54,28 @@ export const addPostAsynch = (post) => (callDispatch) => {
     readableAPI.addPost(post).then(res=> callDispatch(addPost(post))   
     )
 }
+//------------UpdatePost-------------------------
+const updatePost = (post) => (
+    {
+        type: "UPDATE_POST",
+        post
+    });
+    
+    export const updatePostAsynch = (post) => (callDispatch) => {
+        const id = uuidv1()
+        const timestamp = Date.now()
+        
+        post = {
+            id,
+            timestamp,
+            ...post
+        }
+        readableAPI.updatePost(post).then(res=> callDispatch(updatePost(post))   
+        )
+    }
 
 //------------DELETE POST-------------------------
 const deletePost = (postId) => (
-    console.log("ACTION DELETE POST"),
     {
         type: "DELETE_POST",
         postId
