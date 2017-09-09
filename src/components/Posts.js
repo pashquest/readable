@@ -9,12 +9,18 @@ import { Button } from 'reactstrap'
 
 class Posts extends Component {
 
-    //API Call to get al Posts
+    //API Call to get all Posts
 componentDidMount() {
     this.props.getPosts() 
     }
 
 render() {
+
+const deletePostAndPush = (postId) => {
+        this.props.deletePostAsynch(postId)
+        window.location.reload() //refresh, damit die Posts nochml neu geladen werden.
+       }
+
     let sortedPosts = []  
     console.log("BASSER POSTS props", this.props)
 
@@ -35,8 +41,12 @@ render() {
                     <p><font color="red">Category:</font> {post.category}</p>
                     <p><font color="red">Title:</font><Link to="/postdetails" onClick={(e) => this.props.selectedPost(post)}>{post.title}</Link></p>
                     <p><font color="red">Author:</font> {post.author}</p>
+                    <p><font color="red">NumberOfComments:</font> 0 </p>
+                    <p><font color="red">voteScore</font> {post.voteScore}</p>
                     <p><font color="red">timestamp:</font> {moment(post.timestamp).format('lll')}</p> 
                     <p><font color="red">Deleted:</font> {String(post.deleted)}</p>
+                    <button onClick={(e) => deletePostAndPush(post.id)}>Delete Post</button>
+                    <p><Link to="/addpost" onClick={(e) => this.props.selectedPost(post)}>Edit Post</Link></p>
                     <p>--------------------------------------------------------------</p> 
                     <br></br>    
                 </div> 

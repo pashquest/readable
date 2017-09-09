@@ -8,6 +8,8 @@ const postsReducer = (state=[], action) => {
         return [...state]
       case "DELETE_POST":
         return [...state]
+      case "VOTE_POST":
+        return [...state]
       default:
         return state;
     }

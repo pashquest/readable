@@ -1,7 +1,7 @@
 // Mainly followed Description of : http://redux-form.com/6.7.0/examples/simple/
 import React, { Component } from 'react'
 import { Field, reduxForm} from 'redux-form'
-import {addPostAsynch, updatePostAsynch,getPosts} from '../actions/postsActions';
+import {addPostAsynch, updatePostAsynch,getPosts, removeSelectedPost} from '../actions/postsActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom'
@@ -103,7 +103,7 @@ PostForm = connect(
   state => ({
     initialValues: state.selectedPost
   }),
-  {addPostAsynch: addPostAsynch, updatePostAsynch: updatePostAsynch, getPosts: getPosts }
+  {addPostAsynch: addPostAsynch, updatePostAsynch: updatePostAsynch, getPosts: getPosts, removeSelectedPost:removeSelectedPost }
 )(PostForm)
 
 export default PostForm

@@ -73,7 +73,7 @@ export const updatePostAsynch = (post) => (callDispatch) => {
     }
 
 //------------DELETE POST-------------------------
-const deletePost = (postId) => (
+const deletePost = (postId) =>(
     {
         type: "DELETE_POST",
         postId
