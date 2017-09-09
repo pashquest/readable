@@ -6,12 +6,8 @@ import SelectedCategoryReducer from './SelectedCategoryReducer';
 import SelectedPostReducer from './SelectedPostReducer';
 import CommentsReducer from './commentsReducer';
 import { reducer as reduxFormReducer } from 'redux-form';
-//import ActiveUserReducer from './reducer-active-user';
 
-/*
- * We combine all reducers into a single object before updated data is dispatched (sent) to store
- * Your entire applications state (store) is just whatever gets returned from all your reducers
- * */
+
 
 const allReducers = combineReducers({
     categories: CategoryReducer,

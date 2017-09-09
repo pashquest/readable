@@ -9,6 +9,11 @@ import { Button } from 'reactstrap'
 
 class Posts extends Component {
 
+    //API Call to get al Posts
+componentDidMount() {
+    this.props.getPosts() 
+    }
+
 render() {
     let sortedPosts = []  
 

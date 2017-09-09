@@ -16,10 +16,8 @@ componentDidMount() {
     this.props.getPostComments(this.props.selectedPost.id);
   }
 
-// Call the API so the freshState of alle the Posts gets loaded into the state.
-// And CleanUp teh selected Posts in the State as no Post is selected anymore.
+// CleanUp the selected Posts in the State as no Post is selected anymore.
 componentWillUnmount() {
-   this.props.getPosts()
    this.props.removeSelectedPost()
   }
 
@@ -35,6 +33,7 @@ const deletePostAndPush = () => {
               <h1>Post Details</h1>
               <p><font color="red">Category:</font> {this.props.selectedPost.category}</p>
               <p><font color="red">Title:</font> {this.props.selectedPost.title}</p>
+              <p><font color="red">Body:</font> {this.props.selectedPost.body}</p>
               <p><font color="red">Author:</font> {this.props.selectedPost.author}</p>
               <p><font color="red">timestamp:</font> {moment(this.props.selectedPost.timestamp).format('lll')}</p>
               <p><font color="red">Deleted:</font> {String(this.props.selectedPost.deleted)}</p>

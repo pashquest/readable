@@ -7,13 +7,6 @@ import {selectedCategory} from '../actions/categoryActions';
 
 class Categories extends Component {
 
-/*
-selectedCategory = (selectedCategoryValue) => {
-        console.log("SELECTVALUE", selectedCategoryValue)
-        this.props.selectedCategory(selectedCategoryValue)
-    }
-   */
-
 render() {
         return (
            <div> 
@@ -23,7 +16,9 @@ render() {
                         this.props.selectedCategory(category.name)}> {category.name}</Link> </h4>  
                 </div>  
                 )
-              }      
+              }
+              <h4><Link to="/" onClick={(e) => 
+                this.props.selectedCategory("all")}>Show all Categories Posts</Link> </h4>     
             </div>             
    )}
 }

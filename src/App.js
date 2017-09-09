@@ -16,7 +16,6 @@ class App extends Component {
 // API Call to get all the Infos initial before the WebSite is rendered. 
   componentDidMount() {
     this.props.getCategories();
-    this.props.getPosts();
   }
 
   render() {

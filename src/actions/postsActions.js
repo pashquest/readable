@@ -61,12 +61,10 @@ const updatePost = (post) => (
         post
     });
     
-    export const updatePostAsynch = (post) => (callDispatch) => {
-        const id = uuidv1()
+export const updatePostAsynch = (post) => (callDispatch) => {
         const timestamp = Date.now()
         
         post = {
-            id,
             timestamp,
             ...post
         }

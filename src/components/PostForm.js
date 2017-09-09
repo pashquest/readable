@@ -19,7 +19,6 @@ class PostForm extends Component {
   //Rufe diese Methode auch mit handleSubmit auf, denn nur dann habe ich scheinbar in values alle FormInputs.
   update = (values)=>{
     this.props.updatePostAsynch(values)
-    this.props.getPosts()  //Call the posts again to have the latest Infos about the posts
     this.props.history.push("/");
   }
 
@@ -108,7 +107,7 @@ PostForm = connect(
 export default PostForm
 
 
-/*
+/* FRAG MAL NACH wieso as so nicht FUNKTIONIERT 
 const mapDispatchToProps = (dispatch)  => {
   return bindActionCreators({addPostAsynch: addPostAsynch, load: selectedPost}, dispatch);
 }
