@@ -25,6 +25,11 @@ const editComment = (comment) =>{
         this.props.history.push("/addComment")
       }
 
+const voteComment = (commentId, voteValue) =>{
+    this.props.voteCommentAsynch(commentId, voteValue)
+    //this.props.history.push("/postdetails")
+    }
+
 let sortedComments = []
 
 //Sorting the Comments and save it in sortedPosts Array -  check if array is undefined to avoid an error.
@@ -42,7 +47,11 @@ if(typeof (this.props.postComments) !== 'undefined'){
                     <p><font color="red">Author:</font> {postComment.author}</p>
                     <p><font color="red">Body:</font> {postComment.body}</p>
                     <p><font color="red">timestamp:</font> {moment(postComment.timestamp).format('lll')}</p> 
-                    <p><font color="red">voteScore:</font> {postComment.voteScore}</p>
+                    <font color="red">voteScore:</font> {postComment.voteScore} &nbsp;&nbsp;&nbsp;
+
+                    <button onClick={(e) => voteComment(postComment.id, "upVote")}>Like</button>
+                    <button onClick={(e) => voteComment(postComment.id, "downVote")}>Unlike</button> 
+
                     <p><font color="red">Deleted:</font> {String(postComment.deleted)}</p>
                     <p><font color="red">Parent Deleted:</font> {String(postComment.parentDeleted)}</p>
                     <button onClick={(e) => deleteCommentAndPush(postComment.id)}>Delete Comment</button>

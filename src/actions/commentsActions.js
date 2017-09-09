@@ -86,3 +86,14 @@ export const removeSelectedComment = () => {
       type: "REMOVE_SELECTED_COMMENT"
     }
   }
+//------------Vote COmment---------
+const voteComment = (res) => (
+    {
+        type: "VOTE_COMMENT",
+        res
+    });
+    
+    export const voteCommentAsynch = (commentId, voteValue) => (callDispatch) => {      
+        readableAPI.voteComment(commentId, voteValue).then(res => callDispatch(voteComment(res))   
+        )
+    }

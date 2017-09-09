@@ -128,3 +128,27 @@ fetch(`${api}/comments/${commentId}`, {
         'Content-Type': 'application/json'
     }
 })
+
+//------VOTE COMMENT-------------------
+export const voteComment = (commentId, voteValue) =>
+fetch(`${api}/comments/${commentId}`, {
+    method: 'POST',
+    headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ "option": voteValue })
+}).then(res => res.json())
+//.then(data => console.log("Data voteComment", data))
+
+
+//------VOTE POST-------------------
+export const votePost = (PostId, option) =>
+fetch(`${api}/posts/${PostId}`, {
+    method: 'POST',
+    headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ "option": option })
+}).then(res => res.json())

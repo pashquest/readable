@@ -1,4 +1,5 @@
 const CommentsReducer = (state=[], action) => {
+const {res} = action
     switch(action.type) {
       case "GET_POST_COMMENTS":
         return action.postComments
@@ -7,6 +8,8 @@ const CommentsReducer = (state=[], action) => {
       case "UPDATE_COMMENT":
         return [...state]
       case "DELETE_COMMENT":
+        return [...state]
+      case "VOTE_COMMENT":
         return [...state]
       default:
         return state;
