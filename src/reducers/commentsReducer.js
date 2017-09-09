@@ -2,12 +2,8 @@ const CommentsReducer = (state=[], action) => {
     switch(action.type) {
       case "GET_POST_COMMENTS":
         return action.postComments
-       /* 
-      case SELECT_CATEGORY:
-        return {
-          ...state,
-          selectedCategory
-        }; */
+      case "ADD_COMMENT":
+        return [...state, action.comment]
       default:
         return state;
     }

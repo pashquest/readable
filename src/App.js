@@ -9,6 +9,7 @@ import * as postsActions from './actions/postsActions';
 import {bindActionCreators} from 'redux';
 import {Route, withRouter } from 'react-router-dom';
 import PostForm from './components/PostForm'
+import CommentForm from './components/CommentForm'
 import PostDetails from './components/PostDetails'
 
 class App extends Component {
@@ -32,6 +33,7 @@ class App extends Component {
         )} />  
         {/*Wenn du ganz simple nur eine Component aufrufen willst, dann nimm das component Attribute*/}
         <Route exact path="/addPost" component={PostForm}/>
+        <Route exact path="/addComment" component={CommentForm}/>
         <Route exact path="/postdetails" component={PostDetails} />
       </div> 
       )

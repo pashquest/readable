@@ -85,32 +85,40 @@ fetch(`${api}/posts/${PostId}`, {
         }
 })
 
-
-/*
-export const getAll = () =>
-  fetch(`${api}/books`, { headers })
-    .then(res => res.json())
-    .then(data => data.books)
-
-export const update = (book, shelf) =>
-  fetch(`${api}/books/${book.id}`, {
-    method: 'PUT',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ shelf })
-  }).then(res => res.json())
-
-export const search = (query, maxResults) =>
-  fetch(`${api}/search`, {
+//-------add COMMENT-------
+export const addComment = (comment) =>
+fetch(`${api}/comments`, {
     method: 'POST',
     headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        "id": comment.id,
+        "timestamp": comment.timestamp,
+        "body": comment.body,
+        "author": comment.author,
+        "parentId": comment.parentId
+    })
+}).then(res => res.json())
+//.then(druck => console.log("COMMENT DRUCK", druck))
+
+/*
+//---- UPDATE COMMENT
+export const updatePost = (post) =>
+fetch(`${api}/posts/${post.id}`, {
+  method: 'PUT',
+  headers: {
       ...headers,
       'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ query, maxResults })
-  }).then(res => res.json())
-    .then(data => data.books)
-
+  },
+  body: JSON.stringify({
+      "id": post.id,
+      "timestamp": post.timestamp,
+      "title": post.title,
+      "body": post.body,
+      "author": post.author,
+      "category": post.category
+  })
+}).then(res => res.json())
 */

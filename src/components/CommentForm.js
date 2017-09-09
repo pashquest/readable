@@ -1,7 +1,7 @@
 // Mainly followed Description of : http://redux-form.com/6.7.0/examples/simple/
 import React, { Component } from 'react'
 import { Field, reduxForm} from 'redux-form'
-import {addPostAsynch, updatePostAsynch,getPosts} from '../actions/postsActions';
+import {addCommentAsynch} from '../actions/commentsActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom'
@@ -10,17 +10,17 @@ import { Link } from 'react-router-dom'
 kommt auch von reduxform sowie die Field Component, aber man kann da wohl seine eigene Components nutzen called Custome Components.
 Mit ReduxForm kommt auch der Wert values, welche automatisch alle Values von den name Attributes in ein Objekt speichert*/}
 
-class PostForm extends Component {
+class CommentForm extends Component {
 
   submit = (values)=>{
-    this.props.addPostAsynch(values)
-    this.props.history.push("/");
+    console.log("HALLO SELECTEDPOST", this.props.selectedPost.id)
+    this.props.addCommentAsynch(values, this.props.selectedPost.id)
+    this.props.history.push("/postdetails");
   }
   //Rufe diese Methode auch mit handleSubmit auf, denn nur dann habe ich scheinbar in values alle FormInputs.
   update = (values)=>{
-    this.props.updatePostAsynch(values)
-    this.props.removeSelectedPost()
-    this.props.history.push("/");
+   // this.props.updatePostAsynch(values)
+    this.props.history.push("/postdetails");
   }
 
   render(){
@@ -28,25 +28,14 @@ class PostForm extends Component {
 
     return(
       <form onSubmit={handleSubmit(this.submit)}>
-        <h1> POST Formular </h1>
+        <h1> Comment Formular </h1>
         <br></br>
-        <div>
-          <label>Title</label>
-          <div>
-            <Field
-              name="title"
-              component="input"  
-              type="text"
-              placeholder="Title"
-            />
-          </div>
-        </div>
         <div>
           <label>Body</label>
           <div>
             <Field
               name="body"
-              component="input"
+              component="input"  
               type="text"
               placeholder="Body"
             />
@@ -63,21 +52,10 @@ class PostForm extends Component {
             />
           </div>
         </div>
-        <div>
-          <label>Category</label>
-          <div>
-            <Field name="category" component="select">
-              <option />
-              <option value="FrontEnd">FrontEnd</option>
-              <option value="BackEnd">BackEnd</option>
-              <option value="Blockchain">Blockchain</option>
-            </Field>
-          </div>
-        </div>
         <br></br>
         <div>
-          <button type="submit" >Add Post</button>
-          <button><Link to="/">Home</Link></button>
+          <button type="submit" >Add Comment</button>
+          <button><Link to="/postdetails">Post Details</Link></button>
           <button type="button" onClick={handleSubmit(this.update)}> Update Post</button>
         </div>
       </form>
@@ -93,19 +71,18 @@ class PostForm extends Component {
 // Update: Weil diese nicht so ganz mit den initialValues funktionierte, musste ich das umgestalten. So wie das hier beschrieben ist:
 // http://redux-form.com/6.0.0-alpha.4/examples/initializeFromState/  Habe die addPostAsynch() noch hinzugefügt. FortheSake um Fertig zu werden.
 
-PostForm = reduxForm({
-  form: 'PostForm'
-})(PostForm)
+CommentForm = reduxForm({
+  form: 'CommentForm'
+})(CommentForm)
 
 
-PostForm = connect(
+CommentForm = connect(
   state => ({
-    initialValues: state.selectedPost
-  }),
-  {addPostAsynch: addPostAsynch, updatePostAsynch: updatePostAsynch, getPosts: getPosts }
-)(PostForm)
+    selectedPost: state.selectedPost
+  }), {addCommentAsynch: addCommentAsynch}
+)(CommentForm)
 
-export default PostForm
+export default CommentForm
 
 
 /* FRAG MAL NACH wieso as so nicht FUNKTIONIERT 

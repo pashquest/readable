@@ -5,6 +5,7 @@ import moment from 'moment' // used for the timestamp conversion
 import {bindActionCreators} from 'redux';
 import * as CommentsActions from "../actions/commentsActions"
 import _orderBy from 'lodash.orderby' //used for sorting the Comments
+import { Button } from 'reactstrap'
 
 
 
@@ -39,7 +40,8 @@ if(typeof (this.props.postComments) !== 'undefined'){
                 }
                 <button onClick={(e) => this.props.changeCommentsSort("voteScore")}>OrderByVoteScore</button> 
                 <button onClick={(e) => this.props.changeCommentsSort("timestamp")}>OrderByTimeStamp</button> 
-                <button><Link to="/">Back</Link></button>
+                <h3>Add a new Comment</h3>
+                <Button color="secondary"><Link to="/addComment">New Comment</Link></Button> 
             </div>             
         )}
 }

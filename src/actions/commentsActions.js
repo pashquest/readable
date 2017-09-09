@@ -21,51 +21,23 @@ export const changeCommentsSort = (sortedBy) => {
     }
 }
 
-/*
-// -------receivePost---------
-const receivePosts = (posts) => ({
-    type: "RECEIVE_POSTS",
-    posts
-});
-
-export const getPosts = () => (callDispatch) => {
-    readableAPI.getPosts().then(posts => callDispatch(receivePosts(posts))    
-  );
-};
-//------------ChangeSort-------------------------
-export const changeSort = (sortedBy) => {
-    console.log("SORTED_BYE",sortedBy)
-    return{
-    type: "CHANGE_SORT",
-    sortedBy
-    }
-}
-
-//------------SelectPost-------------------------
-export const selectedPost = (Post) => {
-    return {
-      type: "SELECTED_POST",
-      Post
-    }
-  }
-
-//------------AddPost-------------------------
-const addPost = (post) => (
-{
-    type: "ADD_POST",
-    post
-});
-
-export const addPostAsynch = (post) => (callDispatch) => {
-    const id = uuidv1()
-    const timestamp = Date.now()
+//------------AddComment-------------------------
+const addComment = (comment) => (
+    {
+        type: "ADD_COMMENT",
+        comment
+    });
     
-    post = {
-        id,
-        timestamp,
-        ...post
+    export const addCommentAsynch = (comment, parentId) => (callDispatch) => {
+        const id = uuidv1()
+        const timestamp = Date.now()
+        
+        comment = {
+            id,
+            timestamp,
+            parentId,
+            ...comment
+        }
+        readableAPI.addComment(comment).then(res=> callDispatch(addComment(comment))   
+        )
     }
-    readableAPI.addPost(post).then(res=> callDispatch(addPost(post))   
-    )
-}
-*/
