@@ -4,6 +4,7 @@ import PostsReducer from './postsReducer';
 import SortReducer from './SortReducer';
 import SelectedCategoryReducer from './SelectedCategoryReducer';
 import SelectedPostReducer from './SelectedPostReducer';
+import SelectedCommentReducer from './SelectedCommentReducer';
 import CommentsReducer from './commentsReducer';
 import { reducer as reduxFormReducer } from 'redux-form';
 
@@ -16,6 +17,7 @@ const allReducers = combineReducers({
     form: reduxFormReducer,
     selectedCategory: SelectedCategoryReducer,
     selectedPost: SelectedPostReducer,
+    selectedComment: SelectedCommentReducer, 
     postComments: CommentsReducer
 });
 

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import * as readableAPI from './readableAPI'
 import Categories from './components/Categories'
 import Posts from './components/Posts'
 import {connect} from 'react-redux';
 import * as categoriesActions from './actions/categoryActions';
 import * as postsActions from './actions/postsActions';
 import {bindActionCreators} from 'redux';
-import {Route, withRouter } from 'react-router-dom';
+import {Route, withRouter, Switch } from 'react-router-dom';
 import PostForm from './components/PostForm'
 import CommentForm from './components/CommentForm'
 import PostDetails from './components/PostDetails'
+import Comments from './components/Comments'
 
 class App extends Component {
 
@@ -22,7 +22,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/*Mit dem render Attrobute kannst du jetzt einfach das gesamte in die Route packen, vergiss am Ende das "/>" nicht*/}
+        {/*Mit dem render Attrobute kannst du jetzt einfach das gesamte in die Route packen, vergiss am Ende das "/>" nicht BEDENKE
+        Du hast dann komischerweise die history property nicht. Diese hat man nur wenn Route path mit component nutzt. KOMISCH*/}
         <Route exact path="/" render={()=>(
         <div>
             <h1>Title: Categories</h1>  
@@ -35,6 +36,8 @@ class App extends Component {
         <Route exact path="/addPost" component={PostForm}/>
         <Route exact path="/addComment" component={CommentForm}/>
         <Route exact path="/postdetails" component={PostDetails} />
+        {/*To have also the history Property - with render function the history Property was not past to the components */}
+        <Route exact path="/postdetails" component={Comments} /> 
       </div> 
       )
   }

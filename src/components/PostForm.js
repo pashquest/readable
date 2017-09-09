@@ -25,6 +25,7 @@ class PostForm extends Component {
 
   render(){
     const { handleSubmit, reset} = this.props;
+    console.log("BASSER PostForm props", this.props)
 
     return(
       <form onSubmit={handleSubmit(this.submit)}>

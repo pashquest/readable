@@ -13,6 +13,7 @@ import {Provider} from "react-redux";
 import allReducers from './reducers';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger'
+import Comments from './components/Comments'
 
 
 // To be able to use the Redux DevTools next to our Middleware

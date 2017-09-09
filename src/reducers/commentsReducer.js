@@ -4,6 +4,10 @@ const CommentsReducer = (state=[], action) => {
         return action.postComments
       case "ADD_COMMENT":
         return [...state, action.comment]
+      case "UPDATE_COMMENT":
+        return [...state]
+      case "DELETE_COMMENT":
+        return [...state]
       default:
         return state;
     }

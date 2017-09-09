@@ -101,24 +101,30 @@ fetch(`${api}/comments`, {
         "parentId": comment.parentId
     })
 }).then(res => res.json())
-//.then(druck => console.log("COMMENT DRUCK", druck))
 
-/*
-//---- UPDATE COMMENT
-export const updatePost = (post) =>
-fetch(`${api}/posts/${post.id}`, {
-  method: 'PUT',
-  headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-      "id": post.id,
-      "timestamp": post.timestamp,
-      "title": post.title,
-      "body": post.body,
-      "author": post.author,
-      "category": post.category
-  })
+//----------UPDATE COMMENT-----------------
+export const updateComment = (comment) =>
+fetch(`${api}/comments/${comment.id}`, {
+    method: 'PUT',
+    headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        "id": comment.id,
+        "timestamp": comment.timestamp,
+        "body": comment.body,
+        "author": comment.author,
+        "parentId": comment.parentId
+    })
 }).then(res => res.json())
-*/
+
+//----------DELETE COMMENT-----------------
+export const deleteComment = (commentId) =>
+fetch(`${api}/comments/${commentId}`, {
+    method: 'DELETE',
+    headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+    }
+})

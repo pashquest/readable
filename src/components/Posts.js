@@ -16,6 +16,7 @@ componentDidMount() {
 
 render() {
     let sortedPosts = []  
+    console.log("BASSER POSTS props", this.props)
 
     //Sorting the Posts and save it in sortedPosts Array -  check if array is undefined to avoid an error.
     if(typeof (this.props.posts) !== 'undefined'){

@@ -12,6 +12,18 @@ import { Button } from 'reactstrap'
 class Comments extends Component {
 
 render() {
+    console.log("BASSER Comments Props",this.props)
+
+const deleteCommentAndPush = (commentId) => {
+    this.props.deleteCommentAsynch(commentId)
+    //this.props.removeSelectedPost()
+    this.props.history.push("/");
+    }
+
+const editComment = (comment) =>{
+        this.props.selectedComment(comment)
+        this.props.history.push("/addComment")
+      }
 
 let sortedComments = []
 
@@ -33,6 +45,8 @@ if(typeof (this.props.postComments) !== 'undefined'){
                     <p><font color="red">voteScore:</font> {postComment.voteScore}</p>
                     <p><font color="red">Deleted:</font> {String(postComment.deleted)}</p>
                     <p><font color="red">Parent Deleted:</font> {String(postComment.parentDeleted)}</p>
+                    <button onClick={(e) => deleteCommentAndPush(postComment.id)}>Delete Comment</button>
+                    <button onClick={(e) => editComment(postComment)}>Edit Comment</button>
                     <p>--------------------------------------------------------------</p> 
                     <br></br>    
                 </div> 

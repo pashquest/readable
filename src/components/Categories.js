@@ -6,8 +6,10 @@ import {selectedCategory} from '../actions/categoryActions';
 
 
 class Categories extends Component {
+    
 
 render() {
+    console.log("BASSER PROPS CATEGORIES", this.props)
         return (
            <div> 
                 {(this.props.categories || []).map(category => 

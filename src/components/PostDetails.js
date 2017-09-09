@@ -24,6 +24,7 @@ componentWillUnmount() {
   */
 
 render() {
+  console.log("BASSER PostDEtails props",this.props)
 
 const deletePostAndPush = () => {
       this.props.deletePostAsynch(this.props.selectedPost.id)
@@ -41,10 +42,9 @@ const deletePostAndPush = () => {
               <p><font color="red">timestamp:</font> {moment(this.props.selectedPost.timestamp).format('lll')}</p>
               <p><font color="red">Deleted:</font> {String(this.props.selectedPost.deleted)}</p>
               <br></br>
-              <button onClick={(e) => deletePostAndPush()}>DELETE Post</button>
+              <button onClick={(e) => deletePostAndPush()}>Delete Post</button>
               <button onClick={(e) => this.props.history.push("/addPost")}>Edit Post</button> 
               <br></br>
-              <Comments />
             </div>
           )
         }

@@ -1,7 +1,7 @@
 // Mainly followed Description of : http://redux-form.com/6.7.0/examples/simple/
 import React, { Component } from 'react'
 import { Field, reduxForm} from 'redux-form'
-import {addCommentAsynch} from '../actions/commentsActions';
+import {addCommentAsynch, updateCommentAsynch} from '../actions/commentsActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom'
@@ -12,19 +12,19 @@ Mit ReduxForm kommt auch der Wert values, welche automatisch alle Values von den
 
 class CommentForm extends Component {
 
-  submit = (values)=>{
-    console.log("HALLO SELECTEDPOST", this.props.selectedPost.id)
+  submit = (values )=>{
     this.props.addCommentAsynch(values, this.props.selectedPost.id)
     this.props.history.push("/postdetails");
   }
   //Rufe diese Methode auch mit handleSubmit auf, denn nur dann habe ich scheinbar in values alle FormInputs.
   update = (values)=>{
-   // this.props.updatePostAsynch(values)
+    this.props.updateCommentAsynch(values)
     this.props.history.push("/postdetails");
   }
 
   render(){
     const { handleSubmit, reset} = this.props;
+    console.log("BASSER CommentForm props", this.props)
 
     return(
       <form onSubmit={handleSubmit(this.submit)}>
@@ -78,27 +78,9 @@ CommentForm = reduxForm({
 
 CommentForm = connect(
   state => ({
+    initialValues: state.selectedComment, 
     selectedPost: state.selectedPost
-  }), {addCommentAsynch: addCommentAsynch}
+  }), {addCommentAsynch: addCommentAsynch, updateCommentAsynch: updateCommentAsynch}
 )(CommentForm)
 
 export default CommentForm
-
-
-/* FRAG MAL NACH wieso as so nicht FUNKTIONIERT 
-const mapDispatchToProps = (dispatch)  => {
-  return bindActionCreators({addPostAsynch: addPostAsynch, load: selectedPost}, dispatch);
-}
-
-const mapStateToProps = (state) => {
-  return {
-    initialValues: state.selectedPost
-  };
-}
-  
-PostForm = connect(mapStateToProps, mapDispatchToProps)(PostForm);
-  
-  export default reduxForm({
-    form: 'PostForm' // a unique name for this form
-  })(PostForm)
-  */

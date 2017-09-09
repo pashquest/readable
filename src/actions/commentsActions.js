@@ -41,3 +41,48 @@ const addComment = (comment) => (
         readableAPI.addComment(comment).then(res=> callDispatch(addComment(comment))   
         )
     }
+//------------Update COMMENT-------------------------
+const updateComment = (comment) => (
+    {
+        type: "UPDATE_COMMENT",
+        comment
+    });
+    
+export const updateCommentAsynch = (comment) => (callDispatch) => {
+        const timestamp = Date.now()
+        
+        comment = {
+            timestamp,
+            ...comment
+        }
+        console.log("BASSER COMMENT API",comment)
+        readableAPI.updateComment(comment).then(res=> callDispatch(updateComment(comment))   
+        )
+    }
+
+//------------DELETE COMMENT-------------------------
+const deleteComment = (commentId) => (
+    {
+        type: "DELETE_COMMENT",
+        commentId
+    });
+    
+    export const deleteCommentAsynch = (commentId) => (callDispatch) => {      
+        readableAPI.deleteComment(commentId).then(res=> callDispatch(deleteComment(commentId))   
+        )
+    }
+
+//------------Select Comment-------------------------
+export const selectedComment = (comment) => {
+    return {
+      type: "SELECTED_COMMENT",
+      comment
+    }
+  }
+
+//------------RemoveSelectComment for StateCleanUp----------------------
+export const removeSelectedComment = () => {
+    return {
+      type: "REMOVE_SELECTED_COMMENT"
+    }
+  }

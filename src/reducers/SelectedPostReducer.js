@@ -4,7 +4,7 @@ const SelectedPostReducer = (state = {}, action) => {
     switch (action.type) {
       case "SELECTED_POST":
         return Post
-        case "REMOVE_SELECTED_POST":
+      case "REMOVE_SELECTED_POST":
         return {} // to empty the state of selectedPost
       default:
         return state;
