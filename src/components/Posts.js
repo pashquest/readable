@@ -16,9 +16,13 @@ componentDidMount() {
 
 render() {
 
+const votePost = (postId, voteValue) =>{
+        this.props.votePostAsynch(postId, voteValue)
+        }
+
 const deletePostAndPush = (postId) => {
         this.props.deletePostAsynch(postId)
-        window.location.reload() //refresh, damit die Posts nochml neu geladen werden.
+      //  window.location.reload() //refresh, damit die Posts nochml neu geladen werden.
        }
 
     let sortedPosts = []  
@@ -42,7 +46,11 @@ const deletePostAndPush = (postId) => {
                     <p><font color="red">Title:</font><Link to="/postdetails" onClick={(e) => this.props.selectedPost(post)}>{post.title}</Link></p>
                     <p><font color="red">Author:</font> {post.author}</p>
                     <p><font color="red">NumberOfComments:</font> 0 </p>
-                    <p><font color="red">voteScore</font> {post.voteScore}</p>
+                    <font color="red">voteScore</font> {post.voteScore} &nbsp;&nbsp;&nbsp;
+                    {/*VOTESCORE BUTTONS*/}
+                    <button onClick={(e) => votePost(post.id, "upVote")}>Like</button>
+                    <button onClick={(e) => votePost(post.id, "downVote")}>Unlike</button> 
+
                     <p><font color="red">timestamp:</font> {moment(post.timestamp).format('lll')}</p> 
                     <p><font color="red">Deleted:</font> {String(post.deleted)}</p>
                     <button onClick={(e) => deletePostAndPush(post.id)}>Delete Post</button>

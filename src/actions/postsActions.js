@@ -84,4 +84,14 @@ const deletePost = (postId) =>(
         )
     }
 
-    //callDispatch(deletePost(post)
+//------------VOTE POST-------------------------
+const votePost = (res) => (
+        {
+            type: "VOTE_POST",
+            res
+        });
+        
+        export const votePostAsynch = (postId, voteValue) => (callDispatch) => {      
+            readableAPI.votePost(postId, voteValue).then(res => callDispatch(votePost(res))   
+            )
+        }

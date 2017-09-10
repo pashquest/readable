@@ -17,7 +17,7 @@ render() {
 const deleteCommentAndPush = (commentId) => {
     this.props.deleteCommentAsynch(commentId)
     //this.props.removeSelectedPost()
-    this.props.history.push("/");
+  //  this.props.history.push("/");
     }
 
 const editComment = (comment) =>{
