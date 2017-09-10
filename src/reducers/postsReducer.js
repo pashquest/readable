@@ -8,7 +8,7 @@ const {res} = action
         case "UPDATE_POST":
         return [...state]
       case "DELETE_POST":
-        return state.filter(post => (post.id !== action.postId)) //Filter die COmments raus die nicht gleich dem gelöschten sind
+        return state.filter(post => (post.id !== action.postId))
       case "VOTE_POST":
         return state.map(post => (post.id === res.id) ? action.res : post) 
       default:

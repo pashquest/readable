@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as PostActions from '../actions/postsActions';
+import * as CommentActions from '../actions/commentsActions'
 import _orderBy from 'lodash.orderby' //used for sorting the posts
 import moment from 'moment' // used for the timestamp conversion
 import { Link } from 'react-router-dom'
@@ -45,7 +46,7 @@ const deletePostAndPush = (postId) => {
                     <p><font color="red">Category:</font> {post.category}</p>
                     <p><font color="red">Title:</font><Link to="/postdetails" onClick={(e) => this.props.selectedPost(post)}>{post.title}</Link></p>
                     <p><font color="red">Author:</font> {post.author}</p>
-                    <p><font color="red">NumberOfComments:</font> 0 </p>
+                    <p><font color="red">NumberOfComments:</font> 0 ????? </p>
                     <font color="red">voteScore</font> {post.voteScore} &nbsp;&nbsp;&nbsp;
                     {/*VOTESCORE BUTTONS*/}
                     <button onClick={(e) => votePost(post.id, "upVote")}>Like</button>
@@ -82,11 +83,12 @@ function mapStateToProps(state) {
     return {
         posts: state.posts,
         sort: state.sort,
-        selectedCategory: state.selectedCategory
+        selectedCategory: state.selectedCategory,
+        postComments: state.postComments
     };
 }
 function matchDispatchToProps(dispatch){
-  return bindActionCreators({ ...PostActions}, dispatch);
+  return bindActionCreators({ ...PostActions, ...CommentActions}, dispatch);
   }
 // We don't want to return the plain Categories (component) anymore, we want to return the smart Container
 //      > Categories is now aware of state and actions
