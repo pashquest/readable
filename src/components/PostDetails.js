@@ -16,16 +16,7 @@ componentDidMount() {
     this.props.getPostComments(this.props.selectedPost.id);
   }
 
-// CleanUp the selected Posts in the State as no Post is selected anymore.
-/* --> Weil ich diese Property noch beim NewComment benötige um die PArentId zu erhalten. Verschoben nach deletePostAsynch und ins PostForm
-componentWillUnmount() {
-   this.props.removeSelectedPost()
-  }
-  */
-
 render() {
-  console.log("BASSER PostDEtails props",this.props)
-
 const deletePostAndPush = () => {
       this.props.deletePostAsynch(this.props.selectedPost.id)
       this.props.removeSelectedPost()
@@ -43,7 +34,7 @@ const deletePostAndPush = () => {
               <p><font color="red">Deleted:</font> {String(this.props.selectedPost.deleted)}</p>
               <br></br>
               <button onClick={(e) => deletePostAndPush()}>Delete Post</button>
-              <button onClick={(e) => this.props.history.push("/addPost")}>Edit Post</button> 
+              <button onClick={(e) => this.props.history.push("/to/add/Post")}>Edit Post</button> 
               <br></br>
             </div>
           )

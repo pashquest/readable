@@ -14,18 +14,17 @@ class PostForm extends Component {
 
   submit = (values)=>{
     this.props.addPostAsynch(values)
-    this.props.history.push("/");
+    this.props.history.goBack()
   }
   //Rufe diese Methode auch mit handleSubmit auf, denn nur dann habe ich scheinbar in values alle FormInputs.
   update = (values)=>{
     this.props.updatePostAsynch(values)
     this.props.removeSelectedPost()
-    this.props.history.push("/");
+    this.props.history.goBack()
   }
 
   render(){
     const { handleSubmit, reset} = this.props;
-    console.log("BASSER PostForm props", this.props)
 
     return(
       <form onSubmit={handleSubmit(this.submit)}>
@@ -69,9 +68,9 @@ class PostForm extends Component {
           <div>
             <Field name="category" component="select">
               <option />
-              <option value="FrontEnd">FrontEnd</option>
-              <option value="BackEnd">BackEnd</option>
-              <option value="Blockchain">Blockchain</option>
+              <option value="react">React</option>
+              <option value="redux">Redux</option>
+              <option value="udacity">Udacity</option>
             </Field>
           </div>
         </div>

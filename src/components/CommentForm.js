@@ -14,17 +14,16 @@ class CommentForm extends Component {
 
   submit = (values )=>{
     this.props.addCommentAsynch(values, this.props.selectedPost.id)
-    this.props.history.push("/postdetails");
+    this.props.history.goBack()
   }
   //Rufe diese Methode auch mit handleSubmit auf, denn nur dann habe ich scheinbar in values alle FormInputs.
   update = (values)=>{
     this.props.updateCommentAsynch(values)
-    this.props.history.push("/postdetails");
+    this.props.history.goBack()
   }
 
   render(){
     const { handleSubmit, reset} = this.props;
-    console.log("BASSER CommentForm props", this.props)
 
     return(
       <form onSubmit={handleSubmit(this.submit)}>

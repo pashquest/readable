@@ -2,7 +2,8 @@
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
-It used the provided Backend from Udacity [Readable Backend](https://github.com/udacity/reactnd-project-readable-starter)
+It used the provided Backend from Udacity [Readable Backend](https://github.com/udacity/reactnd-project-readable-starter) and runs it on [Heroku](https://warm-escarpment-40953.herokuapp.com)
+The Backend API is running on Heroku, so the initial start of the App may take some time after the Heroku Server is up and running.
 This is the repository that contains the code for the Readable App project from the Udacity React Nanodegree Program.
 
 ### Table of Contents
