@@ -24,27 +24,14 @@ class App extends Component {
       <div className="App">
         {/*Mit dem render Attrobute kannst du jetzt einfach das gesamte in die Route packen, vergiss am Ende das "/>" nicht BEDENKE
         Du hast dann komischerweise die history property nicht. Diese hat man nur wenn Route path mit component nutzt. KOMISCH*/}
-        {/*
-        <Route exact path="/" render={()=>(
-        <div>
-            <h1>Title: Categories</h1>  
-                <Categories />
-            <h1>Title: Posts</h1>
-            <Posts />
-        </div> 
-        )} />  */}
         <Route exact path="/" component={Categories}/>
         <Route exact path="/:categories" component={Categories}/>
         <Route exact path="/:categories/:postId" component={PostDetails}/>
-        <Route exact path="/:categories/:postId" component={Comments} /> 
-        {/*<Route exact path="/" component={Posts}/> 
-        <Route exact path="/postdetails" component={PostDetails} />/*}
+        <Route exact path="/:categories/:postId" component={Comments}/>
 
         {/*Wenn du ganz simple nur eine Component aufrufen willst, dann nimm das component Attribute*/}
         <Route exact path="/to/add/Post" component={PostForm}/>
         <Route exact path="/to/add/Comment" component={CommentForm}/>
-        
-        {/*To have also the history Property - with render function the history Property was not past to the components */}
         
       </div> 
       )

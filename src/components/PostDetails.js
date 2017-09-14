@@ -20,7 +20,7 @@ render() {
 const deletePostAndPush = () => {
       this.props.deletePostAsynch(this.props.selectedPost.id)
       this.props.removeSelectedPost()
-      this.props.history.push("/");
+      this.props.history.replace("/");
      }
 
       return (
